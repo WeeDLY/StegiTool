@@ -83,6 +83,10 @@
       <Project>{f28accfb-d652-4cc0-b965-854c81f7dd67}</Project>
       <Name>Library.Image</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Library.Utility\Library.Utility.csproj">
+      <Project>{5a7bf958-498e-4100-8f95-7c8404c6139b}</Project>
+      <Name>Library.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

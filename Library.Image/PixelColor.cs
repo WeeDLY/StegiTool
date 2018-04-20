@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Library.Utility;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Image
 {
@@ -31,6 +28,32 @@ namespace Library.Image
         public Color GetColor()
         {
             return Color.FromArgb(Alpha, Red, Green, Blue);
+        }
+
+        public Color GetColor(char c)
+        {
+            string binary = Convert.ToString(Red, 2);
+            if(binary[binary.Length - 1] == c)
+            {
+                return Color.FromArgb(Alpha, Red, Green, Blue);
+            }
+            else
+            {
+                Console.WriteLine("Original: " + binary + " | " + c);
+                binary = binary.Remove(binary.Length - 1, 1);
+                binary += c;
+                int value = Convert.ToInt32(binary, 2);
+                Console.WriteLine(Red + " | " + binary);
+                return Color.FromArgb(Alpha, value, Green, Blue);
+            }
+        }
+
+        public string GetLSB()
+        {
+            string red = Convert.ToString(Red, 2);
+            string green = Convert.ToString(Green, 2);
+            string blue = Convert.ToString(Blue, 2);
+            return red[red.Length - 1].ToString();// + green[green.Length - 1].ToString() + blue[blue.Length - 1].ToString();
         }
     }
 }
