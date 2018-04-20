@@ -16,34 +16,37 @@ namespace Library.Image
         private PixelColor[,] _Pixels;
         public PixelColor[,] Pixels { get => _Pixels; set => _Pixels = value; }
 
+        private string _FilePath;
+        public string FilePath { get => _FilePath; set => _FilePath = value; }
+
+        private bool _PixelLoaded = false;
+        public bool PixelLoaded { get => _PixelLoaded; set => _PixelLoaded = value; }
+
         public StegoImage(string file)
         {
+            FilePath = file;
             Image = new BitmapImage(new Uri(file));
-            Bitmap b = new Bitmap(file);
-            Console.WriteLine(b.GetPixel(0, 0));
+        }
 
+        public void LoadPixels()
+        {
+            Bitmap b = new Bitmap(FilePath);
             Pixels = new PixelColor[b.Width, b.Height];
 
-            for(int x = 0; x < b.Width; x++)
+            for (int x = 0; x < b.Width; x++)
             {
-                for(int y = 0; y < b.Height; y++)
+                for (int y = 0; y < b.Height; y++)
                 {
                     Pixels[x, y] = new PixelColor(b.GetPixel(x, y));
                 }
             }
+            PixelLoaded = true;
         }
 
-        public void InsertMessage(string msg)
+        public void CreateImage(string msg, string outputFile)
         {
             string binary = Converter.AsciiToBinary(msg);
-
-            CreateImage(binary);
-        }
-
-
-        public void CreateImage(string msg)
-        {
-            char[] message = msg.ToCharArray();
+            char[] message = binary.ToCharArray();
 
             Bitmap b = new Bitmap(Pixels.GetLength(0), Pixels.GetLength(1));
             int index = 0;
@@ -63,7 +66,7 @@ namespace Library.Image
                 }
             }
 
-            b.Save(@"C:\Users\Blaund\Desktop\a.jpg");
+            b.Save(outputFile);
         }
 
         public void ReadImage()
