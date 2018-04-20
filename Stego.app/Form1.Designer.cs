@@ -28,13 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.BtnSelectFile = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // BtnSelectFile
+            // 
+            this.BtnSelectFile.Location = new System.Drawing.Point(135, 87);
+            this.BtnSelectFile.Name = "BtnSelectFile";
+            this.BtnSelectFile.Size = new System.Drawing.Size(75, 23);
+            this.BtnSelectFile.TabIndex = 0;
+            this.BtnSelectFile.Text = "Select File";
+            this.BtnSelectFile.UseVisualStyleBackColor = true;
+            this.BtnSelectFile.Click += new System.EventHandler(this.BtnSelectFile_Click);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(656, 398);
+            this.Controls.Add(this.BtnSelectFile);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button BtnSelectFile;
     }
 }
 
