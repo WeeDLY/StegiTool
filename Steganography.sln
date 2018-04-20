@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stego.app", "Stego.app\Stego.app.csproj", "{68DC1C66-EE8F-4EA6-ACB5-C58A2CA47F37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Image", "Library.Image\Library.Image.csproj", "{F28ACCFB-D652-4CC0-B965-854C81F7DD67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{68DC1C66-EE8F-4EA6-ACB5-C58A2CA47F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68DC1C66-EE8F-4EA6-ACB5-C58A2CA47F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68DC1C66-EE8F-4EA6-ACB5-C58A2CA47F37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F28ACCFB-D652-4CC0-B965-854C81F7DD67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F28ACCFB-D652-4CC0-B965-854C81F7DD67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F28ACCFB-D652-4CC0-B965-854C81F7DD67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F28ACCFB-D652-4CC0-B965-854C81F7DD67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
