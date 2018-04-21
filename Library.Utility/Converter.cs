@@ -47,5 +47,23 @@ namespace Library.Utility
             }
             return binary;
         }
+
+        public static List<string> StringSplitToChunks(string text, int chunkSize, bool removeOffset = false)
+        {
+            List<string> chunk = new List<string>();
+
+            for(int i = 0; i < text.Length; i += chunkSize)
+            {
+                if(i + chunkSize > text.Length)
+                {
+                    if (removeOffset)
+                        chunkSize = text.Length - i;
+                    else
+                        break;
+                }
+                chunk.Add(text.Substring(i, chunkSize));
+            }
+            return chunk;
+        }
     }
 }

@@ -8,26 +8,72 @@ using System.Windows.Media.Imaging;
 
 namespace Library.Image
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class StegoImage
     {
+        /// <summary>
+        /// The image
+        /// </summary>
         private BitmapImage _Image;
+        /// <summary>
+        /// Gets or sets the image.
+        /// </summary>
+        /// <value>
+        /// The image.
+        /// </value>
         public BitmapImage Image { get => _Image; set => _Image = value; }
 
+        /// <summary>
+        /// The pixels
+        /// </summary>
         private PixelColor[,] _Pixels;
+        /// <summary>
+        /// Gets or sets the pixels.
+        /// </summary>
+        /// <value>
+        /// The pixels.
+        /// </value>
         public PixelColor[,] Pixels { get => _Pixels; set => _Pixels = value; }
 
+        /// <summary>
+        /// The file path
+        /// </summary>
         private string _FilePath;
+        /// <summary>
+        /// Gets or sets the file path.
+        /// </summary>
+        /// <value>
+        /// The file path.
+        /// </value>
         public string FilePath { get => _FilePath; set => _FilePath = value; }
 
+        /// <summary>
+        /// The pixel loaded
+        /// </summary>
         private bool _PixelLoaded = false;
+        /// <summary>
+        /// Gets or sets a value indicating whether [pixel loaded].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [pixel loaded]; otherwise, <c>false</c>.
+        /// </value>
         public bool PixelLoaded { get => _PixelLoaded; set => _PixelLoaded = value; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StegoImage"/> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
         public StegoImage(string file)
         {
             FilePath = file;
             Image = new BitmapImage(new Uri(file));
         }
 
+        /// <summary>
+        /// Loads the pixels.
+        /// </summary>
         public void LoadPixels()
         {
             Bitmap b = new Bitmap(FilePath);
@@ -43,25 +89,33 @@ namespace Library.Image
             PixelLoaded = true;
         }
 
+        /// <summary>
+        /// Creates the image with hidden message
+        /// </summary>
+        /// <param name="msg">The MSG.</param>
+        /// <param name="outputFile">The output file.</param>
         public void CreateImage(string msg, string outputFile)
         {
             string binary = Converter.AsciiToBinary(msg);
-            char[] message = binary.ToCharArray();
+            List<string> msgChunk = Converter.StringSplitToChunks(binary, 3);
 
             Bitmap b = new Bitmap(Pixels.GetLength(0), Pixels.GetLength(1));
+
             int index = 0;
             for (int x = 0; x < Pixels.GetLength(0); x++)
             {
                 for (int y = 0; y < Pixels.GetLength(1); y++)
                 {
-                    Color c = Pixels[x, y].GetColor();
-                    if(index < message.Length)
+                    if(index < msgChunk.Count)
                     {
-                        char a = message[index];
-                        c = Pixels[x, y].GetColor(a);
+                        Color c = Pixels[x, y].GetColor(msgChunk[index]);
+                        b.SetPixel(x, y, c);
                     }
-
-                    b.SetPixel(x, y, c);
+                    else
+                    {
+                        Color c = Pixels[x, y].GetColor();
+                        b.SetPixel(x, y, c);
+                    }
                     index++;
                 }
             }
@@ -69,6 +123,9 @@ namespace Library.Image
             b.Save(outputFile);
         }
 
+        /// <summary>
+        /// Reads the image.
+        /// </summary>
         public void ReadImage()
         {
             string lsb = String.Empty;
@@ -79,25 +136,13 @@ namespace Library.Image
                     lsb += Pixels[x, y].GetLSB();
                 }
             }
-            Console.WriteLine("chunks");
-            Console.WriteLine(lsb);
-            List<string> chunks = new List<string>();
 
-            int chunkSize = 8;
-            int stringLength = 8 * 20;
-            for (int i = 0; i < stringLength; i += chunkSize)
-            {
-                if (i + chunkSize > stringLength)
-                    chunkSize = stringLength - i;
-                chunks.Add(Converter.BinaryToAscii(lsb.Substring(i, chunkSize)));
-            }
-
+            List<string> chunks = Converter.StringSplitToChunks(lsb, 8);
             string message = String.Empty;
             for(int i = 0; i < 20; i++)
             {
-                message += chunks[i];
+                message += Converter.BinaryToAscii(chunks[i]);
             }
-
 
             Console.WriteLine(message);
             Console.WriteLine("done");

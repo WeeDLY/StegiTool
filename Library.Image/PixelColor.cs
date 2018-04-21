@@ -47,13 +47,50 @@ namespace Library.Image
                 return Color.FromArgb(Alpha, value, Green, Blue);
             }
         }
+        public Color GetColor(string msg)
+        {
+            char[] chars = msg.ToCharArray();
+
+            for(int i = 0; i < chars.Length; i++)
+            {
+                switch (i)
+                {
+                    default:
+                    case 0:
+                        Red = GetColorValue(chars[i], Red);
+                        break;
+                    case 1:
+                        Green = GetColorValue(chars[i], Green);
+                        break;
+                    case 2:
+                        Blue = GetColorValue(chars[i], Blue);
+                        break;
+                }
+            }
+            return Color.FromArgb(Alpha, Red, Green, Blue);
+        }
+
+        private int GetColorValue(char c, int value)
+        {
+            string valueBinary = Convert.ToString(value, 2);
+            if(valueBinary[valueBinary.Length - 1] == c)
+            {
+                return value;
+            }
+            else
+            {
+                valueBinary = valueBinary.Remove(valueBinary.Length - 1, 1);
+                valueBinary += c;
+                return Convert.ToInt32(valueBinary, 2);
+            }
+        }
 
         public string GetLSB()
         {
             string red = Convert.ToString(Red, 2);
             string green = Convert.ToString(Green, 2);
             string blue = Convert.ToString(Blue, 2);
-            return red[red.Length - 1].ToString();// + green[green.Length - 1].ToString() + blue[blue.Length - 1].ToString();
+            return red[red.Length - 1].ToString() + green[green.Length - 1] + blue[blue.Length - 1];
         }
     }
 }

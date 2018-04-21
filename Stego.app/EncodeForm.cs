@@ -26,12 +26,10 @@ namespace Stego.app
         private string _OutputFile = String.Empty;
         public string OutputFile { get => _OutputFile; set => _OutputFile = value; }
 
-
         /// <summary>
         /// The image file filter
         /// </summary>
         const string ImageFileFilter = "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG|All files (*.*)|*.*";
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EncodeForm"/> class.
