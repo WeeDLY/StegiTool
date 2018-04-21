@@ -23,12 +23,28 @@ namespace Stego.app
         /// </summary>
         public StegoImage stego;
 
-        private string _OutputFile = String.Empty;
-        public string OutputFile { get => _OutputFile; set => _OutputFile = value; }
-
         /// <summary>
-        /// The image file filter
+        /// The output file
         /// </summary>
+        private string _OutputFile = String.Empty;
+        /// <summary>
+        /// Gets or sets the output file.
+        /// </summary>
+        /// <value>
+        /// The output file.
+        /// </value>
+        public string OutputFile
+        {
+            get => _OutputFile;
+            set
+            {
+                _OutputFile = value;
+                if(value != String.Empty)
+                    LblOutputFile.Text = value;
+            }
+        }
+
+        
         const string ImageFileFilter = "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG|All files (*.*)|*.*";
 
         /// <summary>
@@ -37,6 +53,26 @@ namespace Stego.app
         public EncodeForm()
         {
             InitializeComponent();
+        }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EncodeForm"/> class.
+        /// </summary>
+        /// <param name="spawnLoc">The spawn loc.</param>
+        public EncodeForm(Point spawnLoc, EncodeFormProgress eProg)
+        {
+            InitializeComponent();
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = spawnLoc;
+
+
+            this.OutputFile = eProg.OutputFile;
+
+            if (eProg.Stego == null)
+                return;
+            this.stego = eProg.Stego;
+            if(eProg.Stego.FilePath != null)
+                LblFile.Text = eProg.Stego.FilePath;
         }
 
         /// <summary>
@@ -53,6 +89,10 @@ namespace Stego.app
                 {
                     stego = new StegoImage(ofd.FileName);
                     LblFile.Text = stego.FilePath;
+                }
+                else
+                {
+                    return;
                 }
             }
             Task tLoad = new Task(() => stego.LoadPixels());
@@ -111,9 +151,16 @@ namespace Stego.app
                 if(sfd.ShowDialog() == DialogResult.OK)
                 {
                     OutputFile = sfd.FileName;
-                    LblOutputFile.Text = OutputFile;
                 }
             }
+        }
+
+        private void MenuStripDecodeForm_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DecodeForm d = new DecodeForm(this.Location, new EncodeFormProgress(stego, OutputFile));
+            d.ShowDialog();
+            this.Close();
         }
     }
 }

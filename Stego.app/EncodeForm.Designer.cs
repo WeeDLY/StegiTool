@@ -34,7 +34,7 @@
             this.TextMessage = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.decodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuStripDecodeForm = new System.Windows.Forms.ToolStripMenuItem();
             this.LblFile = new System.Windows.Forms.Label();
             this.BtnClear = new System.Windows.Forms.Button();
             this.LblOutputFile = new System.Windows.Forms.Label();
@@ -84,7 +84,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.decodeToolStripMenuItem});
+            this.MenuStripDecodeForm});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(656, 24);
@@ -97,11 +97,12 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.fileToolStripMenuItem.Text = "Encode";
             // 
-            // decodeToolStripMenuItem
+            // MenuStripDecodeForm
             // 
-            this.decodeToolStripMenuItem.Name = "decodeToolStripMenuItem";
-            this.decodeToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.decodeToolStripMenuItem.Text = "Decode";
+            this.MenuStripDecodeForm.Name = "MenuStripDecodeForm";
+            this.MenuStripDecodeForm.Size = new System.Drawing.Size(59, 20);
+            this.MenuStripDecodeForm.Text = "Decode";
+            this.MenuStripDecodeForm.Click += new System.EventHandler(this.MenuStripDecodeForm_Click);
             // 
             // LblFile
             // 
@@ -174,7 +175,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.Label LblFile;
-        private System.Windows.Forms.ToolStripMenuItem decodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuStripDecodeForm;
         private System.Windows.Forms.Button BtnClear;
         private System.Windows.Forms.Label LblOutputFile;
         private System.Windows.Forms.Button BtnSelectOutputFile;
