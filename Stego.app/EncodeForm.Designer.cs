@@ -30,7 +30,6 @@
         {
             this.BtnSelectFile = new System.Windows.Forms.Button();
             this.BtnEncode = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.TextMessage = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,16 +60,6 @@
             this.BtnEncode.Text = "Encode";
             this.BtnEncode.UseVisualStyleBackColor = true;
             this.BtnEncode.Click += new System.EventHandler(this.BtnEncode_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(307, 101);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // TextMessage
             // 
@@ -152,7 +141,6 @@
             this.Controls.Add(this.BtnClear);
             this.Controls.Add(this.LblFile);
             this.Controls.Add(this.TextMessage);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.BtnEncode);
             this.Controls.Add(this.BtnSelectFile);
             this.Controls.Add(this.menuStrip1);
@@ -170,7 +158,6 @@
 
         private System.Windows.Forms.Button BtnSelectFile;
         private System.Windows.Forms.Button BtnEncode;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox TextMessage;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;

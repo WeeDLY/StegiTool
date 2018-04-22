@@ -1,13 +1,7 @@
 ﻿using Library.Image;
 using Library.Utility;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Stego.app
@@ -21,7 +15,7 @@ namespace Stego.app
         /// <summary>
         /// The stego
         /// </summary>
-        public StegoImage stego;
+        public StegoEncode SEncode;
 
         /// <summary>
         /// The output file
@@ -44,20 +38,18 @@ namespace Stego.app
             }
         }
 
-        
-        const string ImageFileFilter = "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG|All files (*.*)|*.*";
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="EncodeForm"/> class.
+        /// Initializes a new instance of the <see cref="EncodeForm" /> class.
         /// </summary>
         public EncodeForm()
         {
             InitializeComponent();
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="EncodeForm"/> class.
+        /// Initializes a new instance of the <see cref="EncodeForm" /> class.
         /// </summary>
         /// <param name="spawnLoc">The spawn loc.</param>
+        /// <param name="eProg">The e prog.</param>
         public EncodeForm(Point spawnLoc, EncodeFormProgress eProg)
         {
             InitializeComponent();
@@ -65,50 +57,41 @@ namespace Stego.app
             this.StartPosition = FormStartPosition.Manual;
             this.Location = spawnLoc;
 
-
-            this.OutputFile = eProg.OutputFile;
-
-            if (eProg.Stego == null)
+            if (eProg.SEncode == null)
                 return;
-            this.stego = eProg.Stego;
-            if(eProg.Stego.FilePath != null)
-                LblFile.Text = eProg.Stego.FilePath;
+
+            this.SEncode.OutputFile = eProg.SEncode.OutputFile;
+            this.SEncode = eProg.SEncode;
+            if (eProg.SEncode.FilePath != null)
+                LblFile.Text = eProg.SEncode.FilePath;
         }
 
         /// <summary>
         /// Handles the Click event of the BtnSelectFile control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private async void BtnSelectFile_Click(object sender, EventArgs e)
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void BtnSelectFile_Click(object sender, EventArgs e)
         {
             using(var ofd = new OpenFileDialog())
             {
-                ofd.Filter = ImageFileFilter;
+                ofd.Filter = Constants.ImageFileFilter;
                 if(ofd.ShowDialog() == DialogResult.OK)
                 {
-                    stego = new StegoImage(ofd.FileName);
-                    LblFile.Text = stego.FilePath;
-                }
-                else
-                {
-                    return;
+                    SEncode = new StegoEncode(ofd.FileName);
+                    LblFile.Text = SEncode.FilePath;
                 }
             }
-            Task tLoad = new Task(() => stego.LoadPixels());
-            tLoad.Start();
-            await Task.WhenAll(tLoad);
-            Console.WriteLine("loaded");
         }
 
         /// <summary>
         /// Handles the Click event of the BtnEncode control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void BtnEncode_Click(object sender, EventArgs e)
         {
-            if (!stego.PixelLoaded)
+            if (!SEncode.PixelLoaded)
             {
                 Console.WriteLine("Not loaded");
                 return;
@@ -118,36 +101,31 @@ namespace Stego.app
                 if(OutputFile == String.Empty)
                     MessageBox.Show("You have to select an output file");
                 else
-                    stego.CreateImage(TextMessage.Text, OutputFile);
+                    SEncode.CreateImage(TextMessage.Text, OutputFile);
             else
                 MessageBox.Show("You have to type some text to hide");
-        }
-
-        /// <summary>
-        /// Handles the Click event of the button1 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void button1_Click(object sender, EventArgs e)
-        {
-            stego.ReadImage();
         }
 
         /// <summary>
         /// Handles the Click event of the BtnClear control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void BtnClear_Click(object sender, EventArgs e)
         {
             TextMessage.Text = String.Empty;
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnSelectOutputFile control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void BtnSelectOutputFile_Click(object sender, EventArgs e)
         {
             using(var sfd = new SaveFileDialog())
             {
-                sfd.Filter = ImageFileFilter;
+                sfd.Filter = Constants.ImageFileFilter;
                 if(sfd.ShowDialog() == DialogResult.OK)
                 {
                     OutputFile = sfd.FileName;
@@ -155,10 +133,15 @@ namespace Stego.app
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the MenuStripDecodeForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void MenuStripDecodeForm_Click(object sender, EventArgs e)
         {
             this.Hide();
-            DecodeForm d = new DecodeForm(this.Location, new EncodeFormProgress(stego, OutputFile));
+            DecodeForm d = new DecodeForm(this.Location, new EncodeFormProgress(SEncode));
             d.ShowDialog();
             this.Close();
         }

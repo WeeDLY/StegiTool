@@ -1,0 +1,56 @@
+﻿using System;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
+
+namespace Library.Image
+{
+    public abstract class Stego
+    {
+        private string _FilePath;
+        public string FilePath { get => _FilePath; set => _FilePath = value; }
+
+        private BitmapImage _Image;
+        public BitmapImage Image { get => _Image; set => _Image = value; }
+
+        private PixelColor[,] _Pixels;
+        public PixelColor[,] Pixels { get => _Pixels; set => _Pixels = value; }
+
+        private bool _PixelLoaded = false;
+        public bool PixelLoaded { get => _PixelLoaded; set => _PixelLoaded = value; }
+
+        public Stego(string filePath, bool loadPixels = true)
+        {
+            FilePath = filePath;
+            Image = new BitmapImage(new Uri(FilePath));
+            if (loadPixels)
+            {
+                StartLoadingPixelsAsync();
+            }
+        }
+
+        public async void StartLoadingPixelsAsync()
+        {
+            Task tLoadPixels = new Task(() => LoadPixels());
+            tLoadPixels.Start();
+            await Task.WhenAll(tLoadPixels);
+            PixelLoaded = true;
+            Console.WriteLine(PixelLoaded);
+        }
+
+        private void LoadPixels()
+        {
+            Bitmap b = new Bitmap(FilePath);
+            Pixels = new PixelColor[b.Width, b.Height];
+
+            for (int x = 0; x < b.Width; x++)
+            {
+                for (int y = 0; y < b.Height; y++)
+                {
+                    Pixels[x, y] = new PixelColor(b.GetPixel(x, y));
+                }
+            }
+            PixelLoaded = true;
+        }
+    }
+}

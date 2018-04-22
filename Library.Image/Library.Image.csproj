@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="EncodeFormProgress.cs" />
     <Compile Include="PixelColor.cs" />
-    <Compile Include="StegoImage.cs" />
+    <Compile Include="Stego.cs" />
+    <Compile Include="StegoDecode.cs" />
+    <Compile Include="StegoEncode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
