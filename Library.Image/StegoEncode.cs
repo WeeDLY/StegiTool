@@ -17,6 +17,8 @@ namespace Library.Image
         private string _OutputFile = String.Empty;
         public string OutputFile { get => _OutputFile; set => _OutputFile = value; }
 
+        public int EncodeProgress { get; private set; } = 0;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="StegoEncode"/> class.
         /// </summary>
@@ -38,14 +40,13 @@ namespace Library.Image
 
             Bitmap b = new Bitmap(Pixels.GetLength(0), Pixels.GetLength(1));
 
-            int index = 0;
             for (int x = 0; x < Pixels.GetLength(0); x++)
             {
                 for (int y = 0; y < Pixels.GetLength(1); y++)
                 {
-                    if (index < msgChunk.Count)
+                    if (EncodeProgress < msgChunk.Count)
                     {
-                        Color c = Pixels[x, y].GetColor(msgChunk[index]);
+                        Color c = Pixels[x, y].GetColor(msgChunk[EncodeProgress]);
                         b.SetPixel(x, y, c);
                     }
                     else
@@ -53,7 +54,7 @@ namespace Library.Image
                         Color c = Pixels[x, y].GetColor();
                         b.SetPixel(x, y, c);
                     }
-                    index++;
+                    EncodeProgress++;
                 }
             }
 

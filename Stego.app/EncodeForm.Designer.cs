@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.BtnSelectFile = new System.Windows.Forms.Button();
             this.BtnEncode = new System.Windows.Forms.Button();
             this.TextMessage = new System.Windows.Forms.RichTextBox();
@@ -39,6 +40,8 @@
             this.LblOutputFile = new System.Windows.Forms.Label();
             this.BtnSelectOutputFile = new System.Windows.Forms.Button();
             this.LblCharacterCount = new System.Windows.Forms.Label();
+            this.TimerProgress = new System.Windows.Forms.Timer(this.components);
+            this.ProgressBarEncode = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -142,11 +145,24 @@
             this.LblCharacterCount.Text = "Characters: 0/0";
             this.LblCharacterCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // TimerProgress
+            // 
+            this.TimerProgress.Interval = 1000;
+            this.TimerProgress.Tick += new System.EventHandler(this.TimerProgress_Tick);
+            // 
+            // ProgressBarEncode
+            // 
+            this.ProgressBarEncode.Location = new System.Drawing.Point(287, 177);
+            this.ProgressBarEncode.Name = "ProgressBarEncode";
+            this.ProgressBarEncode.Size = new System.Drawing.Size(357, 23);
+            this.ProgressBarEncode.TabIndex = 12;
+            // 
             // EncodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 398);
+            this.Controls.Add(this.ProgressBarEncode);
             this.Controls.Add(this.LblCharacterCount);
             this.Controls.Add(this.BtnSelectOutputFile);
             this.Controls.Add(this.LblOutputFile);
@@ -179,6 +195,8 @@
         private System.Windows.Forms.Label LblOutputFile;
         private System.Windows.Forms.Button BtnSelectOutputFile;
         private System.Windows.Forms.Label LblCharacterCount;
+        private System.Windows.Forms.Timer TimerProgress;
+        private System.Windows.Forms.ProgressBar ProgressBarEncode;
     }
 }
 

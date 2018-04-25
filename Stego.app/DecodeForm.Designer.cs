@@ -28,11 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MenuStripEncodeForm = new System.Windows.Forms.ToolStripMenuItem();
             this.decodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.LblFile = new System.Windows.Forms.Label();
             this.BtnSelectFile = new System.Windows.Forms.Button();
             this.TextOutput = new System.Windows.Forms.RichTextBox();
@@ -64,11 +62,6 @@
             this.decodeToolStripMenuItem.Name = "decodeToolStripMenuItem";
             this.decodeToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.decodeToolStripMenuItem.Text = "Decode";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // LblFile
             // 
@@ -144,7 +137,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem MenuStripEncodeForm;
         private System.Windows.Forms.ToolStripMenuItem decodeToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label LblFile;
         private System.Windows.Forms.Button BtnSelectFile;
         private System.Windows.Forms.RichTextBox TextOutput;

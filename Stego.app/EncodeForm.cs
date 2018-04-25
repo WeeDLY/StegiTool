@@ -103,10 +103,17 @@ namespace Stego.app
                 MessageBox.Show("Your hidden message is too long");
             }
 
+            // Set up progress report
+            TimerProgress.Start();
+            ProgressBarEncode.Maximum = StegEncode.MaxCharacters * 8;
+            ProgressBarEncode.Value = 0;
+
             Task tEncode = new Task(() => StegEncode.CreateImage(message, StegEncode.OutputFile));
             tEncode.Start();
             await Task.WhenAll(tEncode);
-            Console.WriteLine("Done encoding");
+
+            ProgressBarEncode.Value = ProgressBarEncode.Maximum;
+            TimerProgress.Stop();
         }
 
         /// <summary>
@@ -168,6 +175,16 @@ namespace Stego.app
             {
                 LblCharacterCount.Text = String.Format("Characters: {0}/{1}", TextMessage.Text.Length, StegEncode.MaxCharacters);
             }
+        }
+
+        /// <summary>
+        /// Handles the Tick event of the TimerProgress control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TimerProgress_Tick(object sender, EventArgs e)
+        {
+            ProgressBarEncode.Value = StegEncode.EncodeProgress;
         }
     }
 }
