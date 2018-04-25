@@ -42,6 +42,7 @@
             this.LblCharacterCount = new System.Windows.Forms.Label();
             this.TimerProgress = new System.Windows.Forms.Timer(this.components);
             this.ProgressBarEncode = new System.Windows.Forms.ProgressBar();
+            this.CheckBoxBase64 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,9 +58,9 @@
             // 
             // BtnEncode
             // 
-            this.BtnEncode.Location = new System.Drawing.Point(307, 72);
+            this.BtnEncode.Location = new System.Drawing.Point(287, 305);
             this.BtnEncode.Name = "BtnEncode";
-            this.BtnEncode.Size = new System.Drawing.Size(75, 23);
+            this.BtnEncode.Size = new System.Drawing.Size(357, 23);
             this.BtnEncode.TabIndex = 3;
             this.BtnEncode.Text = "Encode";
             this.BtnEncode.UseVisualStyleBackColor = true;
@@ -152,16 +153,27 @@
             // 
             // ProgressBarEncode
             // 
-            this.ProgressBarEncode.Location = new System.Drawing.Point(287, 177);
+            this.ProgressBarEncode.Location = new System.Drawing.Point(287, 334);
             this.ProgressBarEncode.Name = "ProgressBarEncode";
             this.ProgressBarEncode.Size = new System.Drawing.Size(357, 23);
             this.ProgressBarEncode.TabIndex = 12;
+            // 
+            // CheckBoxBase64
+            // 
+            this.CheckBoxBase64.AutoSize = true;
+            this.CheckBoxBase64.Location = new System.Drawing.Point(309, 84);
+            this.CheckBoxBase64.Name = "CheckBoxBase64";
+            this.CheckBoxBase64.Size = new System.Drawing.Size(65, 17);
+            this.CheckBoxBase64.TabIndex = 13;
+            this.CheckBoxBase64.Text = "Base 64";
+            this.CheckBoxBase64.UseVisualStyleBackColor = true;
             // 
             // EncodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 398);
+            this.Controls.Add(this.CheckBoxBase64);
             this.Controls.Add(this.ProgressBarEncode);
             this.Controls.Add(this.LblCharacterCount);
             this.Controls.Add(this.BtnSelectOutputFile);
@@ -197,6 +209,7 @@
         private System.Windows.Forms.Label LblCharacterCount;
         private System.Windows.Forms.Timer TimerProgress;
         private System.Windows.Forms.ProgressBar ProgressBarEncode;
+        private System.Windows.Forms.CheckBox CheckBoxBase64;
     }
 }
 

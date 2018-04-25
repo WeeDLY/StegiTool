@@ -79,29 +79,18 @@ namespace Stego.app
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private async void BtnEncodeAsync_ClickAsync(object sender, EventArgs e)
         {
+            if (!BtnEncodeReady())
+                return;
+
             string message = TextMessage.Text;
 
-            if (!StegEncode.PixelLoaded)
+            bool base64 = CheckBoxBase64.Checked;
+            if (base64)
             {
-                Console.WriteLine("Not loaded");
-                return;
+                message = Converter.AsciiToBase64(message);
             }
 
-            if(message.Length <= 0)
-            {
-                MessageBox.Show("You have to type some text to hide");
-                return;
-            }
-            if(StegEncode.OutputFile == null)
-            {
-                MessageBox.Show("You have to select an output file");
-                return;
-            }
-
-            if(message.Length > StegEncode.MaxCharacters)
-            {
-                MessageBox.Show("Your hidden message is too long");
-            }
+            BtnEncode.Enabled = false;
 
             // Set up progress report
             TimerProgress.Start();
@@ -112,8 +101,49 @@ namespace Stego.app
             tEncode.Start();
             await Task.WhenAll(tEncode);
 
+            BtnEncode.Enabled = true;
             ProgressBarEncode.Value = ProgressBarEncode.Maximum;
             TimerProgress.Stop();
+        }
+
+        /// <summary>
+        /// Checks if user inputted everything necessary for encoding
+        /// </summary>
+        /// <returns></returns>
+        private bool BtnEncodeReady()
+        {
+            if (StegEncode == null)
+            {
+                MessageBox.Show("You haven't inputted anything..");
+                return false;
+            }
+
+            string message = TextMessage.Text;
+
+            if (!StegEncode.PixelLoaded)
+            {
+                MessageBox.Show("Wait for the image to load");
+                return false;
+            }
+
+            if (message.Length <= 0)
+            {
+                MessageBox.Show("You have to type some text to hide");
+                return false;
+            }
+            if (StegEncode.OutputFile == null)
+            {
+                MessageBox.Show("You have to select an output file");
+                return false;
+            }
+
+            if (message.Length > StegEncode.MaxCharacters)
+            {
+                MessageBox.Show("Your hidden message is too long");
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

@@ -97,7 +97,24 @@ namespace Stego.app
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnDecode_Click(object sender, EventArgs e)
         {
+            if(StegDecode == null)
+            {
+                return;
+            }
+
+            /*
+             * BIGGEST PROBLEM WITH BASE64, is to determine, what is base64
+             * This regex, will find base64 encoded text
+             * ^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$
+             */
+
             string message = StegDecode.ReadImage();
+
+            bool base64 = CheckBoxBase64.Checked;
+            if (base64)
+            {
+                message = Converter.Base64ToAscii(message);
+            }
             TextOutput.Text = message;
         }
 
@@ -112,3 +129,4 @@ namespace Stego.app
         }
     }
 }
+ 

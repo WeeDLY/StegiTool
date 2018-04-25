@@ -36,6 +36,7 @@
             this.TextOutput = new System.Windows.Forms.RichTextBox();
             this.BtnClear = new System.Windows.Forms.Button();
             this.BtnDecode = new System.Windows.Forms.Button();
+            this.CheckBoxBase64 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,7 +104,7 @@
             // 
             // BtnDecode
             // 
-            this.BtnDecode.Location = new System.Drawing.Point(287, 81);
+            this.BtnDecode.Location = new System.Drawing.Point(287, 135);
             this.BtnDecode.Name = "BtnDecode";
             this.BtnDecode.Size = new System.Drawing.Size(75, 23);
             this.BtnDecode.TabIndex = 17;
@@ -111,11 +112,22 @@
             this.BtnDecode.UseVisualStyleBackColor = true;
             this.BtnDecode.Click += new System.EventHandler(this.BtnDecode_Click);
             // 
+            // CheckBoxBase64
+            // 
+            this.CheckBoxBase64.AutoSize = true;
+            this.CheckBoxBase64.Location = new System.Drawing.Point(380, 65);
+            this.CheckBoxBase64.Name = "CheckBoxBase64";
+            this.CheckBoxBase64.Size = new System.Drawing.Size(64, 17);
+            this.CheckBoxBase64.TabIndex = 18;
+            this.CheckBoxBase64.Text = "base 64";
+            this.CheckBoxBase64.UseVisualStyleBackColor = true;
+            // 
             // DecodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 398);
+            this.Controls.Add(this.CheckBoxBase64);
             this.Controls.Add(this.BtnDecode);
             this.Controls.Add(this.BtnClear);
             this.Controls.Add(this.TextOutput);
@@ -142,5 +154,6 @@
         private System.Windows.Forms.RichTextBox TextOutput;
         private System.Windows.Forms.Button BtnClear;
         private System.Windows.Forms.Button BtnDecode;
+        private System.Windows.Forms.CheckBox CheckBoxBase64;
     }
 }

@@ -25,9 +25,8 @@ namespace Library.Image
         /// <returns></returns>
         public string ReadImage()
         {
-            int charactersToRead = 8;
-            charactersToRead = this.MaxCharacters;
-            charactersToRead = 5;
+            int charactersToRead = 4;
+            //charactersToRead = this.MaxCharacters;
             int chars = charactersToRead * 8;
 
             string lsb = GetBits(chars);

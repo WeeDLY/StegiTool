@@ -1,29 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Utility
 {
+    /// <summary>
+    /// Converter utility class
+    /// </summary>
     public class Converter
     {
-        public static string TextToBinary(string message)
-        {
-            string binary = String.Empty;
-            foreach (char c in message)
-            {
-                message += Convert.ToString(c, 2);
-            }
-            return binary;
-        }
-
-        public static string BinaryToText(string binary)
-        {
-            int value = Convert.ToInt32(binary);
-            return Convert.ToString(value, 2);
-        }
-
+        /// <summary>
+        /// Binaries to ASCII.
+        /// </summary>
+        /// <param name="binary">The binary.</param>
+        /// <returns></returns>
         public static string BinaryToAscii(string binary)
         {
             var list = new List<Byte>();
@@ -35,6 +25,11 @@ namespace Library.Utility
             return Encoding.ASCII.GetString(list.ToArray());
         }
 
+        /// <summary>
+        /// ASCIIs to binary.
+        /// </summary>
+        /// <param name="ascii">The ASCII.</param>
+        /// <returns></returns>
         public static string AsciiToBinary(string ascii)
         {
             string binary = String.Empty;
@@ -48,6 +43,13 @@ namespace Library.Utility
             return binary;
         }
 
+        /// <summary>
+        /// Strings the split to chunks.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="chunkSize">Size of the chunk.</param>
+        /// <param name="removeOffset">if set to <c>true</c> [remove offset].</param>
+        /// <returns></returns>
         public static List<string> StringSplitToChunks(string text, int chunkSize, bool removeOffset = false)
         {
             List<string> chunk = new List<string>();
@@ -64,6 +66,28 @@ namespace Library.Utility
                 chunk.Add(text.Substring(i, chunkSize));
             }
             return chunk;
+        }
+
+        /// <summary>
+        /// ASCIIs to base64.
+        /// </summary>
+        /// <param name="ascii">The ASCII.</param>
+        /// <returns></returns>
+        public static string AsciiToBase64(string ascii)
+        {
+            byte[] asciiBytes = Encoding.UTF8.GetBytes(ascii);
+            return Convert.ToBase64String(asciiBytes);
+        }
+
+        /// <summary>
+        /// Base64s to ASCII.
+        /// </summary>
+        /// <param name="base64">The base64.</param>
+        /// <returns></returns>
+        public static string Base64ToAscii(string base64)
+        {
+            byte[] base64Bytes = Convert.FromBase64String(base64);
+            return Encoding.UTF8.GetString(base64Bytes);
         }
     }
 }
