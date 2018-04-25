@@ -29,18 +29,6 @@ namespace Stego.app
         public EncodeForm()
         {
             InitializeComponent();
-
-            Console.WriteLine(Converter.AsciiToBinary("hemmelig"));
-            //0110100001100101011011010110110101100101011011000110100101100111
-            //msgChunk:
-            //011010000110010101101101011011010110010101101100011010010110011
-
-            //0110100001100101011011010110110101100101011011000110100101100000
-            //0110100001100101011011010110110101100101011011000110100101100000
-            // 64 length^
-            Console.WriteLine(Converter.BinaryToAscii("0110100001100101011011010110110101100101011011000110100101100111"));
-            Console.WriteLine(Converter.BinaryToAscii("0110100001100101011011010110110101100101011011000110100101100110"));
-            Console.WriteLine(Converter.BinaryToAscii("0110100001100101011011010110110101100101011011000110100101100000"));
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="EncodeForm" /> class.
