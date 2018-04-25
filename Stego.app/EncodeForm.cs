@@ -131,6 +131,7 @@ namespace Stego.app
                 if(sfd.ShowDialog() == DialogResult.OK)
                 {
                     StegEncode.OutputFile = sfd.FileName;
+                    LblOutputFile.Text = StegEncode.OutputFile;
                 }
             }
         }
