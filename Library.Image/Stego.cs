@@ -56,5 +56,16 @@ namespace Library.Image
             }
             PixelLoaded = true;
         }
+
+        /// <summary>
+        /// Gets the maximum amount of characters, there is space for in the image
+        /// </summary>
+        /// <returns>Max amount of characters</returns>
+        private int MaxCharacters()
+        {
+            double pixelCount = Pixels.GetLength(0) * Pixels.GetLength(1);
+            double rgbCount = pixelCount * 3;
+            return (int)Math.Floor(rgbCount / 8);
+        }
     }
 }

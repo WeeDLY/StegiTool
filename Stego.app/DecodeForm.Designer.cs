@@ -110,7 +110,7 @@
             // 
             // BtnDecode
             // 
-            this.BtnDecode.Location = new System.Drawing.Point(287, 56);
+            this.BtnDecode.Location = new System.Drawing.Point(287, 81);
             this.BtnDecode.Name = "BtnDecode";
             this.BtnDecode.Size = new System.Drawing.Size(75, 23);
             this.BtnDecode.TabIndex = 17;

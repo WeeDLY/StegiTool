@@ -16,7 +16,6 @@ namespace Library.Image
             int chars = charactersToRead * 8;
 
             string lsb = GetBits(chars);
-            Console.WriteLine("lsb: " + lsb);
 
             List<string> chunks = Converter.StringSplitToChunks(lsb, 8);
             string message = String.Empty;
@@ -24,9 +23,6 @@ namespace Library.Image
             {
                 message += Converter.BinaryToAscii(chunks[i]);
             }
-
-            Console.WriteLine(message);
-            Console.WriteLine("done");
             return message;
         }
 
