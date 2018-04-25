@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Utility
 {
+    /// <summary>
+    /// Crypto utility class
+    /// </summary>
     public class Crypto
     {
+        /// <summary>
+        /// Aeses the encrypt.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         public static byte[] AesEncrypt(byte[] data, byte[] key)
         {
             using(var aes = Aes.Create())
@@ -31,6 +35,12 @@ namespace Library.Utility
             }
         }
 
+        /// <summary>
+        /// Aeses the decrypt.
+        /// </summary>
+        /// <param name="encryptedText">The encrypted text.</param>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         public static byte[] AesDecrypt(byte[] encryptedText, byte[] key)
         {
             using(var aes = Aes.Create())
