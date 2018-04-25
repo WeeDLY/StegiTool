@@ -38,6 +38,7 @@
             this.BtnClear = new System.Windows.Forms.Button();
             this.LblOutputFile = new System.Windows.Forms.Label();
             this.BtnSelectOutputFile = new System.Windows.Forms.Button();
+            this.LblCharacterCount = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,6 +69,7 @@
             this.TextMessage.Size = new System.Drawing.Size(269, 275);
             this.TextMessage.TabIndex = 5;
             this.TextMessage.Text = "";
+            this.TextMessage.TextChanged += new System.EventHandler(this.TextMessage_TextChanged);
             // 
             // menuStrip1
             // 
@@ -104,7 +106,7 @@
             // 
             // BtnClear
             // 
-            this.BtnClear.Location = new System.Drawing.Point(12, 363);
+            this.BtnClear.Location = new System.Drawing.Point(12, 366);
             this.BtnClear.Name = "BtnClear";
             this.BtnClear.Size = new System.Drawing.Size(75, 23);
             this.BtnClear.TabIndex = 8;
@@ -131,11 +133,21 @@
             this.BtnSelectOutputFile.UseVisualStyleBackColor = true;
             this.BtnSelectOutputFile.Click += new System.EventHandler(this.BtnSelectOutputFile_Click);
             // 
+            // LblCharacterCount
+            // 
+            this.LblCharacterCount.Location = new System.Drawing.Point(93, 366);
+            this.LblCharacterCount.Name = "LblCharacterCount";
+            this.LblCharacterCount.Size = new System.Drawing.Size(188, 23);
+            this.LblCharacterCount.TabIndex = 11;
+            this.LblCharacterCount.Text = "Characters: 0/0";
+            this.LblCharacterCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // EncodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 398);
+            this.Controls.Add(this.LblCharacterCount);
             this.Controls.Add(this.BtnSelectOutputFile);
             this.Controls.Add(this.LblOutputFile);
             this.Controls.Add(this.BtnClear);
@@ -166,6 +178,7 @@
         private System.Windows.Forms.Button BtnClear;
         private System.Windows.Forms.Label LblOutputFile;
         private System.Windows.Forms.Button BtnSelectOutputFile;
+        private System.Windows.Forms.Label LblCharacterCount;
     }
 }
 

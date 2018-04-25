@@ -79,13 +79,15 @@ namespace Stego.app
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private async void BtnEncodeAsync_ClickAsync(object sender, EventArgs e)
         {
+            string message = TextMessage.Text;
+
             if (!StegEncode.PixelLoaded)
             {
                 Console.WriteLine("Not loaded");
                 return;
             }
 
-            if(TextMessage.Text.Length <= 0)
+            if(message.Length <= 0)
             {
                 MessageBox.Show("You have to type some text to hide");
                 return;
@@ -95,7 +97,11 @@ namespace Stego.app
                 MessageBox.Show("You have to select an output file");
                 return;
             }
-            string message = TextMessage.Text;
+
+            if(message.Length > StegEncode.MaxCharacters)
+            {
+                MessageBox.Show("Your hidden message is too long");
+            }
 
             Task tEncode = new Task(() => StegEncode.CreateImage(message, StegEncode.OutputFile));
             tEncode.Start();
@@ -147,6 +153,21 @@ namespace Stego.app
             DecodeForm d = new DecodeForm(this.Location, StegDecode, StegEncode);
             d.ShowDialog();
             this.Close();
+        }
+
+        /// <summary>
+        /// Handles the TextChanged event of the TextMessage control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TextMessage_TextChanged(object sender, EventArgs e)
+        {
+            if (StegEncode == null)
+                return;
+            if (this.StegEncode.PixelLoaded)
+            {
+                LblCharacterCount.Text = String.Format("Characters: {0}/{1}", TextMessage.Text.Length, StegEncode.MaxCharacters);
+            }
         }
     }
 }

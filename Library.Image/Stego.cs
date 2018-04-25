@@ -19,6 +19,13 @@ namespace Library.Image
         private bool _PixelLoaded = false;
         public bool PixelLoaded { get => _PixelLoaded; set => _PixelLoaded = value; }
 
+        public int MaxCharacters { get; private set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Stego"/> class.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <param name="loadPixels">if set to <c>true</c> [load pixels].</param>
         public Stego(string filePath, bool loadPixels = true)
         {
             FilePath = filePath;
@@ -30,6 +37,9 @@ namespace Library.Image
             }
         }
 
+        /// <summary>
+        /// Starts the loading pixels asynchronous.
+        /// </summary>
         public async void StartLoadingPixelsAsync()
         {
             if (FilePath == null)
@@ -40,8 +50,12 @@ namespace Library.Image
             await Task.WhenAll(tLoadPixels);
             PixelLoaded = true;
             Console.WriteLine(PixelLoaded);
+            MaxCharacters = GetMaxCharacters();
         }
 
+        /// <summary>
+        /// Loads the pixels.
+        /// </summary>
         private void LoadPixels()
         {
             Bitmap b = new Bitmap(FilePath);
@@ -61,7 +75,7 @@ namespace Library.Image
         /// Gets the maximum amount of characters, there is space for in the image
         /// </summary>
         /// <returns>Max amount of characters</returns>
-        private int MaxCharacters()
+        private int GetMaxCharacters()
         {
             double pixelCount = Pixels.GetLength(0) * Pixels.GetLength(1);
             double rgbCount = pixelCount * 3;
