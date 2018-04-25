@@ -34,7 +34,7 @@ namespace Library.Image
         public void CreateImage(string msg, string outputFile)
         {
             string binary = Converter.AsciiToBinary(msg);
-            List<string> msgChunk = Converter.StringSplitToChunks(binary, 3);
+            List<string> msgChunk = Converter.StringSplitToChunks(binary, 3, true);
 
             Bitmap b = new Bitmap(Pixels.GetLength(0), Pixels.GetLength(1));
 

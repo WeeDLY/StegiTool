@@ -12,18 +12,15 @@ namespace Library.Image
 
         public string ReadImage()
         {
-            string lsb = String.Empty;
-            for (int x = 0; x < 8 * 20 - 1; x++)
-            {
-                for (int y = 0; y < 8 * 20 - 1; y++)
-                {
-                    lsb += Pixels[x, y].GetLSB();
-                }
-            }
+            int charactersToRead = 8;
+            int chars = charactersToRead * 8;
+
+            string lsb = GetBits(chars);
+            Console.WriteLine("lsb: " + lsb);
 
             List<string> chunks = Converter.StringSplitToChunks(lsb, 8);
             string message = String.Empty;
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < charactersToRead; i++)
             {
                 message += Converter.BinaryToAscii(chunks[i]);
             }
@@ -31,6 +28,24 @@ namespace Library.Image
             Console.WriteLine(message);
             Console.WriteLine("done");
             return message;
+        }
+
+        private string GetBits(int chars)
+        {
+            string bits = String.Empty;
+
+            int read = 0;
+            for(int x = 0; x < Pixels.GetLength(0); x++)
+            {
+                for(int y = 0; y < Pixels.GetLength(1); y++)
+                {
+                    if(read > chars)
+                        return bits;
+                    bits += Pixels[x, y].GetLSB();
+                    read++;
+                }
+            }
+            return bits;
         }
     }
 }

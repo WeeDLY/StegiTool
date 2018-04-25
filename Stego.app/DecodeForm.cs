@@ -100,5 +100,15 @@ namespace Stego.app
             string message = StegDecode.ReadImage();
             TextOutput.Text = message;
         }
+
+        /// <summary>
+        /// Handles the Click event of the BtnClear control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            TextOutput.Text = String.Empty;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Library.Utility;
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Stego.app
@@ -23,32 +24,23 @@ namespace Stego.app
         public StegoDecode StegDecode;
 
         /// <summary>
-        /// The output file
-        /// </summary>
-        private string _OutputFile = String.Empty;
-        /// <summary>
-        /// Gets or sets the output file.
-        /// </summary>
-        /// <value>
-        /// The output file.
-        /// </value>
-        public string OutputFile
-        {
-            get => _OutputFile;
-            set
-            {
-                _OutputFile = value;
-                if(value != String.Empty)
-                    LblOutputFile.Text = value;
-            }
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="EncodeForm" /> class.
         /// </summary>
         public EncodeForm()
         {
             InitializeComponent();
+
+            Console.WriteLine(Converter.AsciiToBinary("hemmelig"));
+            //0110100001100101011011010110110101100101011011000110100101100111
+            //msgChunk:
+            //011010000110010101101101011011010110010101101100011010010110011
+
+            //0110100001100101011011010110110101100101011011000110100101100000
+            //0110100001100101011011010110110101100101011011000110100101100000
+            // 64 length^
+            Console.WriteLine(Converter.BinaryToAscii("0110100001100101011011010110110101100101011011000110100101100111"));
+            Console.WriteLine(Converter.BinaryToAscii("0110100001100101011011010110110101100101011011000110100101100110"));
+            Console.WriteLine(Converter.BinaryToAscii("0110100001100101011011010110110101100101011011000110100101100000"));
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="EncodeForm" /> class.
@@ -97,7 +89,7 @@ namespace Stego.app
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-        private void BtnEncode_Click(object sender, EventArgs e)
+        private async void BtnEncodeAsync_ClickAsync(object sender, EventArgs e)
         {
             if (!StegEncode.PixelLoaded)
             {
@@ -105,13 +97,22 @@ namespace Stego.app
                 return;
             }
 
-            if(TextMessage.Text.Length > 0)
-                if(OutputFile == String.Empty)
-                    MessageBox.Show("You have to select an output file");
-                else
-                    StegEncode.CreateImage(TextMessage.Text, OutputFile);
-            else
+            if(TextMessage.Text.Length <= 0)
+            {
                 MessageBox.Show("You have to type some text to hide");
+                return;
+            }
+            if(StegEncode.OutputFile == null)
+            {
+                MessageBox.Show("You have to select an output file");
+                return;
+            }
+            string message = TextMessage.Text;
+
+            Task tEncode = new Task(() => StegEncode.CreateImage(message, StegEncode.OutputFile));
+            tEncode.Start();
+            await Task.WhenAll(tEncode);
+            Console.WriteLine("Done encoding");
         }
 
         /// <summary>
@@ -131,12 +132,17 @@ namespace Stego.app
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void BtnSelectOutputFile_Click(object sender, EventArgs e)
         {
+            if (StegEncode == null)
+            {
+                MessageBox.Show("You need to select <Selected File> first");
+                return;
+            }
             using(var sfd = new SaveFileDialog())
             {
                 sfd.Filter = Constants.ImageFileFilter;
                 if(sfd.ShowDialog() == DialogResult.OK)
                 {
-                    OutputFile = sfd.FileName;
+                    StegEncode.OutputFile = sfd.FileName;
                 }
             }
         }

@@ -59,7 +59,7 @@
             this.BtnEncode.TabIndex = 3;
             this.BtnEncode.Text = "Encode";
             this.BtnEncode.UseVisualStyleBackColor = true;
-            this.BtnEncode.Click += new System.EventHandler(this.BtnEncode_Click);
+            this.BtnEncode.Click += new System.EventHandler(this.BtnEncodeAsync_ClickAsync);
             // 
             // TextMessage
             // 

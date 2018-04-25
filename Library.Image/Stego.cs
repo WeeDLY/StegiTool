@@ -23,6 +23,7 @@ namespace Library.Image
         {
             FilePath = filePath;
             Image = new BitmapImage(new Uri(FilePath));
+
             if (loadPixels)
             {
                 StartLoadingPixelsAsync();
@@ -31,6 +32,9 @@ namespace Library.Image
 
         public async void StartLoadingPixelsAsync()
         {
+            if (FilePath == null)
+                return;
+
             Task tLoadPixels = new Task(() => LoadPixels());
             tLoadPixels.Start();
             await Task.WhenAll(tLoadPixels);
