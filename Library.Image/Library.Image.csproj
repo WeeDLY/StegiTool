@@ -43,7 +43,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EncodeFormProgress.cs" />
     <Compile Include="PixelColor.cs" />
     <Compile Include="Stego.cs" />
     <Compile Include="StegoDecode.cs" />

@@ -35,8 +35,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.LblFile = new System.Windows.Forms.Label();
             this.BtnSelectFile = new System.Windows.Forms.Button();
-            this.TextMessage = new System.Windows.Forms.RichTextBox();
+            this.TextOutput = new System.Windows.Forms.RichTextBox();
             this.BtnClear = new System.Windows.Forms.Button();
+            this.BtnDecode = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,14 +89,14 @@
             this.BtnSelectFile.UseVisualStyleBackColor = true;
             this.BtnSelectFile.Click += new System.EventHandler(this.BtnSelectFile_Click);
             // 
-            // TextMessage
+            // TextOutput
             // 
-            this.TextMessage.Location = new System.Drawing.Point(12, 56);
-            this.TextMessage.Name = "TextMessage";
-            this.TextMessage.ReadOnly = true;
-            this.TextMessage.Size = new System.Drawing.Size(269, 301);
-            this.TextMessage.TabIndex = 15;
-            this.TextMessage.Text = "";
+            this.TextOutput.Location = new System.Drawing.Point(12, 56);
+            this.TextOutput.Name = "TextOutput";
+            this.TextOutput.ReadOnly = true;
+            this.TextOutput.Size = new System.Drawing.Size(269, 301);
+            this.TextOutput.TabIndex = 15;
+            this.TextOutput.Text = "";
             // 
             // BtnClear
             // 
@@ -106,13 +107,24 @@
             this.BtnClear.Text = "Clear";
             this.BtnClear.UseVisualStyleBackColor = true;
             // 
+            // BtnDecode
+            // 
+            this.BtnDecode.Location = new System.Drawing.Point(287, 56);
+            this.BtnDecode.Name = "BtnDecode";
+            this.BtnDecode.Size = new System.Drawing.Size(75, 23);
+            this.BtnDecode.TabIndex = 17;
+            this.BtnDecode.Text = "Decode";
+            this.BtnDecode.UseVisualStyleBackColor = true;
+            this.BtnDecode.Click += new System.EventHandler(this.BtnDecode_Click);
+            // 
             // DecodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 398);
+            this.Controls.Add(this.BtnDecode);
             this.Controls.Add(this.BtnClear);
-            this.Controls.Add(this.TextMessage);
+            this.Controls.Add(this.TextOutput);
             this.Controls.Add(this.LblFile);
             this.Controls.Add(this.BtnSelectFile);
             this.Controls.Add(this.menuStrip1);
@@ -134,7 +146,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label LblFile;
         private System.Windows.Forms.Button BtnSelectFile;
-        private System.Windows.Forms.RichTextBox TextMessage;
+        private System.Windows.Forms.RichTextBox TextOutput;
         private System.Windows.Forms.Button BtnClear;
+        private System.Windows.Forms.Button BtnDecode;
     }
 }

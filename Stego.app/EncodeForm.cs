@@ -13,9 +13,14 @@ namespace Stego.app
     public partial class EncodeForm : Form
     {
         /// <summary>
-        /// The stego
+        /// The steg encode
         /// </summary>
-        public StegoEncode SEncode;
+        public StegoEncode StegEncode;
+
+        /// <summary>
+        /// The steg decode
+        /// </summary>
+        public StegoDecode StegDecode;
 
         /// <summary>
         /// The output file
@@ -50,20 +55,23 @@ namespace Stego.app
         /// </summary>
         /// <param name="spawnLoc">The spawn loc.</param>
         /// <param name="eProg">The e prog.</param>
-        public EncodeForm(Point spawnLoc, EncodeFormProgress eProg)
+        public EncodeForm(Point spawnLoc, StegoEncode stegEncode, StegoDecode stegDecode)
         {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
             this.Location = spawnLoc;
 
-            if (eProg.SEncode == null)
+            this.StegDecode = stegDecode;
+
+            if (stegEncode == null)
                 return;
 
-            this.SEncode.OutputFile = eProg.SEncode.OutputFile;
-            this.SEncode = eProg.SEncode;
-            if (eProg.SEncode.FilePath != null)
-                LblFile.Text = eProg.SEncode.FilePath;
+            this.StegEncode = stegEncode;
+            this.StegEncode.OutputFile = stegEncode.OutputFile;
+
+            if (stegEncode.FilePath != null)
+                LblFile.Text = stegEncode.FilePath;
         }
 
         /// <summary>
@@ -78,8 +86,8 @@ namespace Stego.app
                 ofd.Filter = Constants.ImageFileFilter;
                 if(ofd.ShowDialog() == DialogResult.OK)
                 {
-                    SEncode = new StegoEncode(ofd.FileName);
-                    LblFile.Text = SEncode.FilePath;
+                    StegEncode = new StegoEncode(ofd.FileName);
+                    LblFile.Text = StegEncode.FilePath;
                 }
             }
         }
@@ -91,7 +99,7 @@ namespace Stego.app
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void BtnEncode_Click(object sender, EventArgs e)
         {
-            if (!SEncode.PixelLoaded)
+            if (!StegEncode.PixelLoaded)
             {
                 Console.WriteLine("Not loaded");
                 return;
@@ -101,7 +109,7 @@ namespace Stego.app
                 if(OutputFile == String.Empty)
                     MessageBox.Show("You have to select an output file");
                 else
-                    SEncode.CreateImage(TextMessage.Text, OutputFile);
+                    StegEncode.CreateImage(TextMessage.Text, OutputFile);
             else
                 MessageBox.Show("You have to type some text to hide");
         }
@@ -141,7 +149,7 @@ namespace Stego.app
         private void MenuStripDecodeForm_Click(object sender, EventArgs e)
         {
             this.Hide();
-            DecodeForm d = new DecodeForm(this.Location, new EncodeFormProgress(SEncode));
+            DecodeForm d = new DecodeForm(this.Location, StegDecode, StegEncode);
             d.ShowDialog();
             this.Close();
         }

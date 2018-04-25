@@ -10,7 +10,7 @@ namespace Library.Image
         {
         }
 
-        public void ReadImage()
+        public string ReadImage()
         {
             string lsb = String.Empty;
             for (int x = 0; x < 8 * 20 - 1; x++)
@@ -30,6 +30,7 @@ namespace Library.Image
 
             Console.WriteLine(message);
             Console.WriteLine("done");
+            return message;
         }
     }
 }
