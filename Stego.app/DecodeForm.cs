@@ -2,6 +2,7 @@
 using Library.Utility;
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Stego.app
@@ -95,15 +96,15 @@ namespace Stego.app
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnDecode_Click(object sender, EventArgs e)
+        private async void BtnDecode_ClickAsync(object sender, EventArgs e)
         {
             /*
             * BIGGEST PROBLEM WITH BASE64, is to determine, what is base64
             * This regex, will find base64 encoded text
             * ^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$
             */
-            
-            if(StegDecode == null)
+
+            if (StegDecode == null)
                 return;
 
             int charLength = (int)NumericChars.Value;
@@ -111,20 +112,17 @@ namespace Stego.app
             if (checkBoxAes.Checked)
             {
                 password = TextBoxAesPassword.Text;
-                if(password.Length <= 0)
+                if (password.Length <= 0)
                 {
                     MessageBox.Show("You have to select a password for aes encryption");
                     return;
                 }
             }
 
-            string message = StegDecode.ReadImage(charLength);
-            Console.WriteLine("message: " + message);
+            string message = await Task.Run(() => StegDecode.ReadImage(charLength));
 
             if (checkBoxAes.Checked)
-            {
                 message = Crypto.Decrypt(message, password);
-            }
 
             if (CheckBoxBase64.Checked)
                 message = Converter.Base64ToAscii(message);
@@ -140,5 +138,6 @@ namespace Stego.app
         {
             TextOutput.Text = String.Empty;
         }
+
     }
 }

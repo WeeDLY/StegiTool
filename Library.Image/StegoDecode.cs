@@ -1,15 +1,24 @@
 ﻿using Library.Utility;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Library.Image
 {
     /// <summary>
-    /// 
+    /// Steganography Decode class object
     /// </summary>
     /// <seealso cref="Library.Image.Stego" />
     public class StegoDecode : Stego
     {
+        /// <summary>
+        /// Gets the encode progress.
+        /// </summary>
+        /// <value>
+        /// The encode progress.
+        /// </value>
+        public int DecodeProgress { get; private set; } = 0;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="StegoDecode"/> class.
         /// </summary>
@@ -23,7 +32,7 @@ namespace Library.Image
         /// Reads the image.
         /// </summary>
         /// <returns></returns>
-        public string ReadImage(int charactersToRead)
+        public Task<string> ReadImage(int charactersToRead)
         {
             int chars = charactersToRead * 8;
             string lsb = GetBits(chars);
@@ -33,8 +42,9 @@ namespace Library.Image
             for (int i = 0; i < charactersToRead; i++)
             {
                 message += Converter.BinaryToAscii(chunks[i]);
+                DecodeProgress++;
             }
-            return message;
+            return Task.FromResult(message);
         }
 
         /// <summary>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MenuStripEncodeForm = new System.Windows.Forms.ToolStripMenuItem();
             this.decodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +41,8 @@
             this.checkBoxAes = new System.Windows.Forms.CheckBox();
             this.TextBoxAesPassword = new System.Windows.Forms.TextBox();
             this.NumericChars = new System.Windows.Forms.NumericUpDown();
+            this.ProgressBarDecode = new System.Windows.Forms.ProgressBar();
+            this.TimerProgress = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumericChars)).BeginInit();
             this.SuspendLayout();
@@ -108,13 +111,13 @@
             // 
             // BtnDecode
             // 
-            this.BtnDecode.Location = new System.Drawing.Point(328, 363);
+            this.BtnDecode.Location = new System.Drawing.Point(390, 265);
             this.BtnDecode.Name = "BtnDecode";
-            this.BtnDecode.Size = new System.Drawing.Size(75, 23);
+            this.BtnDecode.Size = new System.Drawing.Size(75, 20);
             this.BtnDecode.TabIndex = 17;
             this.BtnDecode.Text = "Decode";
             this.BtnDecode.UseVisualStyleBackColor = true;
-            this.BtnDecode.Click += new System.EventHandler(this.BtnDecode_Click);
+            this.BtnDecode.Click += new System.EventHandler(this.BtnDecode_ClickAsync);
             // 
             // CheckBoxBase64
             // 
@@ -161,11 +164,23 @@
             0,
             0});
             // 
+            // ProgressBarDecode
+            // 
+            this.ProgressBarDecode.Location = new System.Drawing.Point(285, 334);
+            this.ProgressBarDecode.Name = "ProgressBarDecode";
+            this.ProgressBarDecode.Size = new System.Drawing.Size(357, 23);
+            this.ProgressBarDecode.TabIndex = 22;
+            // 
+            // TimerProgress
+            // 
+            this.TimerProgress.Interval = 1000;
+            // 
             // DecodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 398);
+            this.Controls.Add(this.ProgressBarDecode);
             this.Controls.Add(this.NumericChars);
             this.Controls.Add(this.TextBoxAesPassword);
             this.Controls.Add(this.checkBoxAes);
@@ -201,5 +216,7 @@
         private System.Windows.Forms.CheckBox checkBoxAes;
         private System.Windows.Forms.TextBox TextBoxAesPassword;
         private System.Windows.Forms.NumericUpDown NumericChars;
+        private System.Windows.Forms.ProgressBar ProgressBarDecode;
+        private System.Windows.Forms.Timer TimerProgress;
     }
 }

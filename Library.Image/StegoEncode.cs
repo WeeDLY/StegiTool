@@ -60,6 +60,5 @@ namespace Library.Image
 
             b.Save(outputFile);
         }
-
     }
 }
