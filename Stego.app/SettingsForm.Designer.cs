@@ -132,7 +132,7 @@
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.label1);
             this.Name = "SettingsForm";
-            this.Text = "SettingsForm";
+            this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NumericIterations)).EndInit();
             this.ResumeLayout(false);

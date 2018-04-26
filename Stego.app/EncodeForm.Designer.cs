@@ -35,6 +35,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStripDecodeForm = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuStripSettingsForm = new System.Windows.Forms.ToolStripMenuItem();
             this.LblFile = new System.Windows.Forms.Label();
             this.BtnClear = new System.Windows.Forms.Button();
             this.LblOutputFile = new System.Windows.Forms.Label();
@@ -46,7 +47,6 @@
             this.CheckBoxAes = new System.Windows.Forms.CheckBox();
             this.TextBoxAesKey = new System.Windows.Forms.TextBox();
             this.ToolTipAes = new System.Windows.Forms.ToolTip(this.components);
-            this.MenuStripSettingsForm = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,6 +103,13 @@
             this.MenuStripDecodeForm.Size = new System.Drawing.Size(59, 20);
             this.MenuStripDecodeForm.Text = "Decode";
             this.MenuStripDecodeForm.Click += new System.EventHandler(this.MenuStripDecodeForm_Click);
+            // 
+            // MenuStripSettingsForm
+            // 
+            this.MenuStripSettingsForm.Name = "MenuStripSettingsForm";
+            this.MenuStripSettingsForm.Size = new System.Drawing.Size(61, 20);
+            this.MenuStripSettingsForm.Text = "Settings";
+            this.MenuStripSettingsForm.Click += new System.EventHandler(this.MenuStripSettingsForm_Click);
             // 
             // LblFile
             // 
@@ -202,13 +209,6 @@
             this.ToolTipAes.InitialDelay = 250;
             this.ToolTipAes.ReshowDelay = 100;
             // 
-            // MenuStripSettingsForm
-            // 
-            this.MenuStripSettingsForm.Name = "MenuStripSettingsForm";
-            this.MenuStripSettingsForm.Size = new System.Drawing.Size(61, 20);
-            this.MenuStripSettingsForm.Text = "Settings";
-            this.MenuStripSettingsForm.Click += new System.EventHandler(this.MenuStripSettingsForm_Click);
-            // 
             // EncodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,7 +229,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "EncodeForm";
-            this.Text = "StegiTool";
+            this.Text = "StegiTool - Encode";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
