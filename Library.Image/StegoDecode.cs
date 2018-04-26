@@ -42,7 +42,6 @@ namespace Library.Image
             for (int i = 0; i < charactersToRead; i++)
             {
                 message += Converter.BinaryToAscii(chunks[i]);
-                DecodeProgress++;
             }
             return Task.FromResult(message);
         }
@@ -65,6 +64,7 @@ namespace Library.Image
                         return bits;
                     bits += Pixels[x, y].GetLSB();
                     read++;
+                    DecodeProgress++;
                 }
             }
             return bits;

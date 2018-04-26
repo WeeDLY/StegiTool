@@ -174,6 +174,7 @@
             // TimerProgress
             // 
             this.TimerProgress.Interval = 1000;
+            this.TimerProgress.Tick += new System.EventHandler(this.TimerProgress_Tick);
             // 
             // DecodeForm
             // 

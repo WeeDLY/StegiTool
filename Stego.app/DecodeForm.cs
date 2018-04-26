@@ -103,21 +103,19 @@ namespace Stego.app
             * This regex, will find base64 encoded text
             * ^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$
             */
-
-            if (StegDecode == null)
+            if(BtnDecodeReady() == false)
+            {
                 return;
+            }
 
             int charLength = (int)NumericChars.Value;
-            string password = String.Empty;
-            if (checkBoxAes.Checked)
-            {
-                password = TextBoxAesPassword.Text;
-                if (password.Length <= 0)
-                {
-                    MessageBox.Show("You have to select a password for aes encryption");
-                    return;
-                }
-            }
+            string password = TextBoxAesPassword.Text;
+
+            // Set up progress report
+            TimerProgress.Start();
+            BtnDecode.Enabled = false;
+            ProgressBarDecode.Maximum = charLength * 8;
+            ProgressBarDecode.Value = 0;
 
             string message = await Task.Run(() => StegDecode.ReadImage(charLength));
 
@@ -127,8 +125,34 @@ namespace Stego.app
             if (CheckBoxBase64.Checked)
                 message = Converter.Base64ToAscii(message);
             TextOutput.Text = message;
-        }
 
+            BtnDecode.Enabled = true;
+            ProgressBarDecode.Value = ProgressBarDecode.Maximum;
+            TimerProgress.Stop();
+        }
+        /// <summary>
+        /// BTNs the decode ready.
+        /// </summary>
+        /// <returns></returns>
+        private bool BtnDecodeReady()
+        {
+            if (StegDecode == null)
+            {
+                MessageBox.Show("You haven't inputted anything...");
+                return false;
+            }
+
+            if (checkBoxAes.Checked)
+            {
+                if (TextBoxAesPassword.Text.Length <= 0)
+                {
+                    MessageBox.Show("You have to select a password for aes encryption");
+                    return false;
+                }
+            }
+            return true;
+        }
+        
         /// <summary>
         /// Handles the Click event of the BtnClear control.
         /// </summary>
@@ -139,5 +163,9 @@ namespace Stego.app
             TextOutput.Text = String.Empty;
         }
 
+        private void TimerProgress_Tick(object sender, EventArgs e)
+        {
+            ProgressBarDecode.Value = StegDecode.DecodeProgress;
+        }
     }
 }
