@@ -94,17 +94,11 @@ namespace Stego.app
 
             string message = TextMessage.Text;
 
-            bool base64 = CheckBoxBase64.Checked;
-            if (base64)
-            {
+            if (CheckBoxBase64.Checked)
                 message = Converter.AsciiToBase64(message);
-            }
 
             if (CheckBoxAes.Checked)
-            {
                 message = Crypto.Encrypt(message, TextBoxAesKey.Text);
-            }
-            Console.WriteLine(message);
             BtnEncode.Enabled = false;
 
             // Set up progress report
