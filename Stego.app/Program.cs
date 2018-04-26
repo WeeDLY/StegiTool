@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Utility;
+using System;
 using System.Windows.Forms;
 
 namespace Stego.app
@@ -11,6 +12,8 @@ namespace Stego.app
         [STAThread]
         static void Main()
         {
+            Settings.LoadSettings();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new EncodeForm());

@@ -45,11 +45,8 @@ namespace Library.Image
             if (FilePath == null)
                 return;
 
-            Task tLoadPixels = new Task(() => LoadPixels());
-            tLoadPixels.Start();
-            await Task.WhenAll(tLoadPixels);
+            await Task.Run(() => LoadPixels());
             PixelLoaded = true;
-            Console.WriteLine(PixelLoaded);
             MaxCharacters = GetMaxCharacters();
         }
 

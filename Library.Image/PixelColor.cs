@@ -30,23 +30,6 @@ namespace Library.Image
             return Color.FromArgb(Alpha, Red, Green, Blue);
         }
 
-        public Color GetColor(char c)
-        {
-            string binary = Convert.ToString(Red, 2);
-            if(binary[binary.Length - 1] == c)
-            {
-                return Color.FromArgb(Alpha, Red, Green, Blue);
-            }
-            else
-            {
-                Console.WriteLine("Original: " + binary + " | " + c);
-                binary = binary.Remove(binary.Length - 1, 1);
-                binary += c;
-                int value = Convert.ToInt32(binary, 2);
-                Console.WriteLine(Red + " | " + binary);
-                return Color.FromArgb(Alpha, value, Green, Blue);
-            }
-        }
         public Color GetColor(string msg)
         {
             char[] chars = msg.ToCharArray();

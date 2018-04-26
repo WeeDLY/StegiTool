@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Library.Utility.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Iterations" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="KeySize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">256</Value>
+    </Setting>
+    <Setting Name="Hash" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SHA256</Value>
+    </Setting>
+    <Setting Name="Salt" Type="System.String" Scope="User">
+      <Value Profile="(Default)">aselrias38490a32</Value>
+    </Setting>
+    <Setting Name="Vector" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8947az34awl34kjq</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -10,32 +10,6 @@ namespace Library.Utility
     /// </summary>
     public static class Crypto
     {
-        #region Settings
-
-        /// <summary>
-        /// The iterations
-        /// </summary>
-        private static int _iterations = 2;
-        /// <summary>
-        /// The key size
-        /// </summary>
-        private static int _keySize = 256;
-
-        /// <summary>
-        /// The hash
-        /// </summary>
-        private static string _hash = "SHA256";// started with SHA1
-        /// <summary>
-        /// The salt
-        /// </summary>
-        private static string _salt = "aselrias38490a32"; // Random
-        /// <summary>
-        /// The vector
-        /// </summary>
-        private static string _vector = "8947az34awl34kjq"; // Random
-
-        #endregion
-
         /// <summary>
         /// Encrypts the specified value.
         /// </summary>
@@ -56,16 +30,16 @@ namespace Library.Utility
         public static string Encrypt<T>(string value, string password)
                 where T : SymmetricAlgorithm, new()
         {
-            byte[] vectorBytes = Encoding.ASCII.GetBytes(_vector);
-            byte[] saltBytes = Encoding.ASCII.GetBytes(_salt);
+            byte[] vectorBytes = Encoding.ASCII.GetBytes(Settings.Vector);
+            byte[] saltBytes = Encoding.ASCII.GetBytes(Settings.Salt);
             byte[] valueBytes = Encoding.UTF8.GetBytes(value);
 
             byte[] encrypted;
             using (T cipher = new T())
             {
                 PasswordDeriveBytes _passwordBytes =
-                    new PasswordDeriveBytes(password, saltBytes, _hash, _iterations);
-                byte[] keyBytes = _passwordBytes.GetBytes(_keySize / 8);
+                    new PasswordDeriveBytes(password, saltBytes, Settings.Hash, Settings.Iterations);
+                byte[] keyBytes = _passwordBytes.GetBytes(Settings.KeySize / 8);
 
                 cipher.Mode = CipherMode.CBC;
 
@@ -101,8 +75,8 @@ namespace Library.Utility
         /// <returns></returns>
         public static string Decrypt<T>(string value, string password) where T : SymmetricAlgorithm, new()
         {
-            byte[] vectorBytes = Encoding.ASCII.GetBytes(_vector);
-            byte[] saltBytes = Encoding.ASCII.GetBytes(_salt);
+            byte[] vectorBytes = Encoding.ASCII.GetBytes(Settings.Vector);
+            byte[] saltBytes = Encoding.ASCII.GetBytes(Settings.Salt);
             byte[] valueBytes = Convert.FromBase64String(value);
 
             byte[] decrypted;
@@ -110,8 +84,8 @@ namespace Library.Utility
 
             using (T cipher = new T())
             {
-                PasswordDeriveBytes _passwordBytes = new PasswordDeriveBytes(password, saltBytes, _hash, _iterations);
-                byte[] keyBytes = _passwordBytes.GetBytes(_keySize / 8);
+                PasswordDeriveBytes _passwordBytes = new PasswordDeriveBytes(password, saltBytes, Settings.Hash, Settings.Iterations);
+                byte[] keyBytes = _passwordBytes.GetBytes(Settings.KeySize / 8);
 
                 cipher.Mode = CipherMode.CBC;
 
