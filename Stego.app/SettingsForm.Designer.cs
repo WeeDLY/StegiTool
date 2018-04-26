@@ -35,6 +35,7 @@
             this.TextBoxHash = new System.Windows.Forms.TextBox();
             this.TextBoxSalt = new System.Windows.Forms.TextBox();
             this.TextBoxVector = new System.Windows.Forms.TextBox();
+            this.BtnResetSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NumericIterations)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             // 
             // BtnSave
             // 
-            this.BtnSave.Location = new System.Drawing.Point(278, 266);
+            this.BtnSave.Location = new System.Drawing.Point(62, 286);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(75, 23);
             this.BtnSave.TabIndex = 1;
@@ -107,11 +108,22 @@
             this.TextBoxVector.Size = new System.Drawing.Size(100, 20);
             this.TextBoxVector.TabIndex = 6;
             // 
+            // BtnResetSettings
+            // 
+            this.BtnResetSettings.Location = new System.Drawing.Point(278, 286);
+            this.BtnResetSettings.Name = "BtnResetSettings";
+            this.BtnResetSettings.Size = new System.Drawing.Size(75, 23);
+            this.BtnResetSettings.TabIndex = 7;
+            this.BtnResetSettings.Text = "Reset";
+            this.BtnResetSettings.UseVisualStyleBackColor = true;
+            this.BtnResetSettings.Click += new System.EventHandler(this.BtnResetSettings_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 321);
+            this.Controls.Add(this.BtnResetSettings);
             this.Controls.Add(this.TextBoxVector);
             this.Controls.Add(this.TextBoxSalt);
             this.Controls.Add(this.TextBoxHash);
@@ -137,5 +149,6 @@
         private System.Windows.Forms.TextBox TextBoxHash;
         private System.Windows.Forms.TextBox TextBoxSalt;
         private System.Windows.Forms.TextBox TextBoxVector;
+        private System.Windows.Forms.Button BtnResetSettings;
     }
 }

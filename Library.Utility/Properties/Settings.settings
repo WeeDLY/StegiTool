@@ -12,10 +12,10 @@
       <Value Profile="(Default)">SHA256</Value>
     </Setting>
     <Setting Name="Salt" Type="System.String" Scope="User">
-      <Value Profile="(Default)">aselrias38490a32</Value>
+      <Value Profile="(Default)">xZoqvRzsILt8GuA7</Value>
     </Setting>
     <Setting Name="Vector" Type="System.String" Scope="User">
-      <Value Profile="(Default)">8947az34awl34kjq</Value>
+      <Value Profile="(Default)">7nEeuuzSBSTn010P</Value>
     </Setting>
   </Settings>
 </SettingsFile>

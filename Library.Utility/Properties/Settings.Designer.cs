@@ -61,7 +61,7 @@ namespace Library.Utility.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("aselrias38490a32")]
+        [global::System.Configuration.DefaultSettingValueAttribute("xZoqvRzsILt8GuA7")]
         public string Salt {
             get {
                 return ((string)(this["Salt"]));
@@ -73,7 +73,7 @@ namespace Library.Utility.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8947az34awl34kjq")]
+        [global::System.Configuration.DefaultSettingValueAttribute("7nEeuuzSBSTn010P")]
         public string Vector {
             get {
                 return ((string)(this["Vector"]));
