@@ -30,6 +30,9 @@ namespace Stego.app
         public EncodeForm()
         {
             InitializeComponent();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="EncodeForm" /> class.
@@ -39,6 +42,8 @@ namespace Stego.app
         public EncodeForm(Point spawnLoc, StegoEncode stegEncode, StegoDecode stegDecode)
         {
             InitializeComponent();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
 
             this.StartPosition = FormStartPosition.Manual;
             this.Location = spawnLoc;
@@ -249,6 +254,15 @@ namespace Stego.app
         private void CheckBoxAes_CheckedChanged(object sender, EventArgs e)
         {
             TextMessage_TextChanged(null, null);
+        }
+
+        private void MenuStripSettingsForm_Click(object sender, EventArgs e)
+        {
+            SettingsForm sForm = new SettingsForm
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            sForm.ShowDialog();
         }
     }
 }

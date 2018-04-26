@@ -46,6 +46,7 @@
             this.CheckBoxAes = new System.Windows.Forms.CheckBox();
             this.TextBoxAesKey = new System.Windows.Forms.TextBox();
             this.ToolTipAes = new System.Windows.Forms.ToolTip(this.components);
+            this.MenuStripSettingsForm = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,7 +83,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.MenuStripDecodeForm});
+            this.MenuStripDecodeForm,
+            this.MenuStripSettingsForm});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(656, 24);
@@ -200,6 +202,13 @@
             this.ToolTipAes.InitialDelay = 250;
             this.ToolTipAes.ReshowDelay = 100;
             // 
+            // MenuStripSettingsForm
+            // 
+            this.MenuStripSettingsForm.Name = "MenuStripSettingsForm";
+            this.MenuStripSettingsForm.Size = new System.Drawing.Size(61, 20);
+            this.MenuStripSettingsForm.Text = "Settings";
+            this.MenuStripSettingsForm.Click += new System.EventHandler(this.MenuStripSettingsForm_Click);
+            // 
             // EncodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,6 +256,7 @@
         private System.Windows.Forms.CheckBox CheckBoxAes;
         private System.Windows.Forms.TextBox TextBoxAesKey;
         private System.Windows.Forms.ToolTip ToolTipAes;
+        private System.Windows.Forms.ToolStripMenuItem MenuStripSettingsForm;
     }
 }
 

@@ -43,6 +43,7 @@
             this.NumericChars = new System.Windows.Forms.NumericUpDown();
             this.ProgressBarDecode = new System.Windows.Forms.ProgressBar();
             this.TimerProgress = new System.Windows.Forms.Timer(this.components);
+            this.MenuStripSettingsForm = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumericChars)).BeginInit();
             this.SuspendLayout();
@@ -51,7 +52,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuStripEncodeForm,
-            this.decodeToolStripMenuItem});
+            this.decodeToolStripMenuItem,
+            this.MenuStripSettingsForm});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(656, 24);
@@ -176,6 +178,13 @@
             this.TimerProgress.Interval = 1000;
             this.TimerProgress.Tick += new System.EventHandler(this.TimerProgress_Tick);
             // 
+            // MenuStripSettingsForm
+            // 
+            this.MenuStripSettingsForm.Name = "MenuStripSettingsForm";
+            this.MenuStripSettingsForm.Size = new System.Drawing.Size(61, 20);
+            this.MenuStripSettingsForm.Text = "Settings";
+            this.MenuStripSettingsForm.Click += new System.EventHandler(this.MenuStripSettingsForm_Click);
+            // 
             // DecodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,5 +228,6 @@
         private System.Windows.Forms.NumericUpDown NumericChars;
         private System.Windows.Forms.ProgressBar ProgressBarDecode;
         private System.Windows.Forms.Timer TimerProgress;
+        private System.Windows.Forms.ToolStripMenuItem MenuStripSettingsForm;
     }
 }

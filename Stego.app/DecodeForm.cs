@@ -31,7 +31,8 @@ namespace Stego.app
         public DecodeForm(Point loc, StegoDecode stegDecode, StegoEncode stegEncode)
         {
             InitializeComponent();
-
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
             this.StartPosition = FormStartPosition.Manual;
             this.Location = loc;
 
@@ -166,6 +167,15 @@ namespace Stego.app
         private void TimerProgress_Tick(object sender, EventArgs e)
         {
             ProgressBarDecode.Value = StegDecode.DecodeProgress;
+        }
+
+        private void MenuStripSettingsForm_Click(object sender, EventArgs e)
+        {
+            SettingsForm sForm = new SettingsForm()
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            sForm.ShowDialog();
         }
     }
 }
