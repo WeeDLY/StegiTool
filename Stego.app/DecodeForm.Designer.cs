@@ -37,7 +37,11 @@
             this.BtnClear = new System.Windows.Forms.Button();
             this.BtnDecode = new System.Windows.Forms.Button();
             this.CheckBoxBase64 = new System.Windows.Forms.CheckBox();
+            this.checkBoxAes = new System.Windows.Forms.CheckBox();
+            this.TextBoxAesPassword = new System.Windows.Forms.TextBox();
+            this.NumericChars = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericChars)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -104,7 +108,7 @@
             // 
             // BtnDecode
             // 
-            this.BtnDecode.Location = new System.Drawing.Point(287, 135);
+            this.BtnDecode.Location = new System.Drawing.Point(328, 363);
             this.BtnDecode.Name = "BtnDecode";
             this.BtnDecode.Size = new System.Drawing.Size(75, 23);
             this.BtnDecode.TabIndex = 17;
@@ -115,18 +119,56 @@
             // CheckBoxBase64
             // 
             this.CheckBoxBase64.AutoSize = true;
-            this.CheckBoxBase64.Location = new System.Drawing.Point(380, 65);
+            this.CheckBoxBase64.Location = new System.Drawing.Point(287, 131);
             this.CheckBoxBase64.Name = "CheckBoxBase64";
-            this.CheckBoxBase64.Size = new System.Drawing.Size(64, 17);
+            this.CheckBoxBase64.Size = new System.Drawing.Size(65, 17);
             this.CheckBoxBase64.TabIndex = 18;
-            this.CheckBoxBase64.Text = "base 64";
+            this.CheckBoxBase64.Text = "Base 64";
             this.CheckBoxBase64.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAes
+            // 
+            this.checkBoxAes.AutoSize = true;
+            this.checkBoxAes.Location = new System.Drawing.Point(287, 163);
+            this.checkBoxAes.Name = "checkBoxAes";
+            this.checkBoxAes.Size = new System.Drawing.Size(47, 17);
+            this.checkBoxAes.TabIndex = 19;
+            this.checkBoxAes.Text = "AES";
+            this.checkBoxAes.UseVisualStyleBackColor = true;
+            // 
+            // TextBoxAesPassword
+            // 
+            this.TextBoxAesPassword.Location = new System.Drawing.Point(285, 186);
+            this.TextBoxAesPassword.Name = "TextBoxAesPassword";
+            this.TextBoxAesPassword.Size = new System.Drawing.Size(357, 20);
+            this.TextBoxAesPassword.TabIndex = 20;
+            // 
+            // NumericChars
+            // 
+            this.NumericChars.Location = new System.Drawing.Point(301, 67);
+            this.NumericChars.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.NumericChars.Name = "NumericChars";
+            this.NumericChars.Size = new System.Drawing.Size(102, 20);
+            this.NumericChars.TabIndex = 21;
+            this.NumericChars.ThousandsSeparator = true;
+            this.NumericChars.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             // 
             // DecodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 398);
+            this.Controls.Add(this.NumericChars);
+            this.Controls.Add(this.TextBoxAesPassword);
+            this.Controls.Add(this.checkBoxAes);
             this.Controls.Add(this.CheckBoxBase64);
             this.Controls.Add(this.BtnDecode);
             this.Controls.Add(this.BtnClear);
@@ -139,6 +181,7 @@
             this.Text = "StegiTool";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericChars)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,5 +198,8 @@
         private System.Windows.Forms.Button BtnClear;
         private System.Windows.Forms.Button BtnDecode;
         private System.Windows.Forms.CheckBox CheckBoxBase64;
+        private System.Windows.Forms.CheckBox checkBoxAes;
+        private System.Windows.Forms.TextBox TextBoxAesPassword;
+        private System.Windows.Forms.NumericUpDown NumericChars;
     }
 }

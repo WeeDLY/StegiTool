@@ -45,6 +45,7 @@
             this.CheckBoxBase64 = new System.Windows.Forms.CheckBox();
             this.CheckBoxAes = new System.Windows.Forms.CheckBox();
             this.TextBoxAesKey = new System.Windows.Forms.TextBox();
+            this.ToolTipAes = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -168,6 +169,8 @@
             this.CheckBoxBase64.Size = new System.Drawing.Size(65, 17);
             this.CheckBoxBase64.TabIndex = 13;
             this.CheckBoxBase64.Text = "Base 64";
+            this.ToolTipAes.SetToolTip(this.CheckBoxBase64, "After encrypting the text, the result will be base64 encoded, before it\'s hidden " +
+        "in the image");
             this.CheckBoxBase64.UseVisualStyleBackColor = true;
             this.CheckBoxBase64.CheckedChanged += new System.EventHandler(this.TextMessage_TextChanged);
             // 
@@ -179,6 +182,8 @@
             this.CheckBoxAes.Size = new System.Drawing.Size(47, 17);
             this.CheckBoxAes.TabIndex = 14;
             this.CheckBoxAes.Text = "AES";
+            this.ToolTipAes.SetToolTip(this.CheckBoxAes, "After encrypting the text, the result will be base64 encoded, before it\'s hidden " +
+        "in the image");
             this.CheckBoxAes.UseVisualStyleBackColor = true;
             this.CheckBoxAes.CheckedChanged += new System.EventHandler(this.CheckBoxAes_CheckedChanged);
             // 
@@ -188,6 +193,12 @@
             this.TextBoxAesKey.Name = "TextBoxAesKey";
             this.TextBoxAesKey.Size = new System.Drawing.Size(335, 20);
             this.TextBoxAesKey.TabIndex = 15;
+            // 
+            // ToolTipAes
+            // 
+            this.ToolTipAes.AutoPopDelay = 5000;
+            this.ToolTipAes.InitialDelay = 250;
+            this.ToolTipAes.ReshowDelay = 100;
             // 
             // EncodeForm
             // 
@@ -235,6 +246,7 @@
         private System.Windows.Forms.CheckBox CheckBoxBase64;
         private System.Windows.Forms.CheckBox CheckBoxAes;
         private System.Windows.Forms.TextBox TextBoxAesKey;
+        private System.Windows.Forms.ToolTip ToolTipAes;
     }
 }
 

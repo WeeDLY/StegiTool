@@ -23,12 +23,9 @@ namespace Library.Image
         /// Reads the image.
         /// </summary>
         /// <returns></returns>
-        public string ReadImage()
+        public string ReadImage(int charactersToRead)
         {
-            int charactersToRead = 24;
-            //charactersToRead = this.MaxCharacters;
             int chars = charactersToRead * 8;
-
             string lsb = GetBits(chars);
 
             List<string> chunks = Converter.StringSplitToChunks(lsb, 8);
@@ -37,7 +34,7 @@ namespace Library.Image
             {
                 message += Converter.BinaryToAscii(chunks[i]);
             }
-            return Crypto.Decrypt(message, "1");
+            return message;
         }
 
         /// <summary>

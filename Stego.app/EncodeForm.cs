@@ -129,7 +129,7 @@ namespace Stego.app
         {
             if (StegEncode == null)
             {
-                MessageBox.Show("You haven't inputted anything..");
+                MessageBox.Show("You haven't inputted anything...");
                 return false;
             }
 
@@ -233,6 +233,11 @@ namespace Stego.app
                 {
                     text = Converter.AsciiToBase64(text);
                 }
+                if (CheckBoxAes.Checked)
+                {
+                    text = Crypto.Encrypt(text, "filler");
+                }
+
                 LblCharacterCount.Text = String.Format("Characters: {0}/{1}", text.Length, StegEncode.MaxCharacters);
             }
         }
@@ -249,8 +254,6 @@ namespace Stego.app
 
         private void CheckBoxAes_CheckedChanged(object sender, EventArgs e)
         {
-
-
             TextMessage_TextChanged(null, null);
         }
     }
