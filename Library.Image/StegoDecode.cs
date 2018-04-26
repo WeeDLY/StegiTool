@@ -25,7 +25,7 @@ namespace Library.Image
         /// <returns></returns>
         public string ReadImage()
         {
-            int charactersToRead = 4;
+            int charactersToRead = 24;
             //charactersToRead = this.MaxCharacters;
             int chars = charactersToRead * 8;
 
@@ -37,7 +37,7 @@ namespace Library.Image
             {
                 message += Converter.BinaryToAscii(chunks[i]);
             }
-            return message;
+            return Crypto.Decrypt(message, "1");
         }
 
         /// <summary>

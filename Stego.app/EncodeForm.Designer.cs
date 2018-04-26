@@ -43,6 +43,8 @@
             this.TimerProgress = new System.Windows.Forms.Timer(this.components);
             this.ProgressBarEncode = new System.Windows.Forms.ProgressBar();
             this.CheckBoxBase64 = new System.Windows.Forms.CheckBox();
+            this.CheckBoxAes = new System.Windows.Forms.CheckBox();
+            this.TextBoxAesKey = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -167,12 +169,33 @@
             this.CheckBoxBase64.TabIndex = 13;
             this.CheckBoxBase64.Text = "Base 64";
             this.CheckBoxBase64.UseVisualStyleBackColor = true;
+            this.CheckBoxBase64.CheckedChanged += new System.EventHandler(this.TextMessage_TextChanged);
+            // 
+            // CheckBoxAes
+            // 
+            this.CheckBoxAes.AutoSize = true;
+            this.CheckBoxAes.Location = new System.Drawing.Point(309, 123);
+            this.CheckBoxAes.Name = "CheckBoxAes";
+            this.CheckBoxAes.Size = new System.Drawing.Size(47, 17);
+            this.CheckBoxAes.TabIndex = 14;
+            this.CheckBoxAes.Text = "AES";
+            this.CheckBoxAes.UseVisualStyleBackColor = true;
+            this.CheckBoxAes.CheckedChanged += new System.EventHandler(this.CheckBoxAes_CheckedChanged);
+            // 
+            // TextBoxAesKey
+            // 
+            this.TextBoxAesKey.Location = new System.Drawing.Point(309, 146);
+            this.TextBoxAesKey.Name = "TextBoxAesKey";
+            this.TextBoxAesKey.Size = new System.Drawing.Size(335, 20);
+            this.TextBoxAesKey.TabIndex = 15;
             // 
             // EncodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 398);
+            this.Controls.Add(this.TextBoxAesKey);
+            this.Controls.Add(this.CheckBoxAes);
             this.Controls.Add(this.CheckBoxBase64);
             this.Controls.Add(this.ProgressBarEncode);
             this.Controls.Add(this.LblCharacterCount);
@@ -210,6 +233,8 @@
         private System.Windows.Forms.Timer TimerProgress;
         private System.Windows.Forms.ProgressBar ProgressBarEncode;
         private System.Windows.Forms.CheckBox CheckBoxBase64;
+        private System.Windows.Forms.CheckBox CheckBoxAes;
+        private System.Windows.Forms.TextBox TextBoxAesKey;
     }
 }
 

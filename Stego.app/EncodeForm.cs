@@ -2,6 +2,7 @@
 using Library.Utility;
 using System;
 using System.Drawing;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -79,6 +80,15 @@ namespace Stego.app
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private async void BtnEncodeAsync_ClickAsync(object sender, EventArgs e)
         {
+            /*
+            string data = "a";
+            string key = "0123456789123456";
+            string encrypted = Crypto.Encrypt(data, key);
+            Console.WriteLine("Encrypted: " + encrypted);
+
+            string decrypted = Crypto.Decrypt(encrypted, key);
+            Console.WriteLine("Decrypted: " + decrypted);*/
+
             if (!BtnEncodeReady())
                 return;
 
@@ -90,6 +100,11 @@ namespace Stego.app
                 message = Converter.AsciiToBase64(message);
             }
 
+            if (CheckBoxAes.Checked)
+            {
+                message = Crypto.Encrypt(message, TextBoxAesKey.Text);
+            }
+            Console.WriteLine(message);
             BtnEncode.Enabled = false;
 
             // Set up progress report
@@ -141,6 +156,15 @@ namespace Stego.app
             {
                 MessageBox.Show("Your hidden message is too long");
                 return false;
+            }
+
+            if (CheckBoxAes.Checked)
+            {
+                if(TextBoxAesKey.Text.Length <= 0)
+                {
+                    MessageBox.Show("Please enter your aes key");
+                    return false;
+                }
             }
 
             return true;
@@ -201,9 +225,15 @@ namespace Stego.app
         {
             if (StegEncode == null)
                 return;
-            if (this.StegEncode.PixelLoaded)
+
+            if (StegEncode.PixelLoaded)
             {
-                LblCharacterCount.Text = String.Format("Characters: {0}/{1}", TextMessage.Text.Length, StegEncode.MaxCharacters);
+                string text = TextMessage.Text;
+                if (CheckBoxBase64.Checked)
+                {
+                    text = Converter.AsciiToBase64(text);
+                }
+                LblCharacterCount.Text = String.Format("Characters: {0}/{1}", text.Length, StegEncode.MaxCharacters);
             }
         }
 
@@ -215,6 +245,13 @@ namespace Stego.app
         private void TimerProgress_Tick(object sender, EventArgs e)
         {
             ProgressBarEncode.Value = StegEncode.EncodeProgress;
+        }
+
+        private void CheckBoxAes_CheckedChanged(object sender, EventArgs e)
+        {
+
+
+            TextMessage_TextChanged(null, null);
         }
     }
 }
