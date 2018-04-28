@@ -44,6 +44,7 @@
             this.NumericChars = new System.Windows.Forms.NumericUpDown();
             this.ProgressBarDecode = new System.Windows.Forms.ProgressBar();
             this.TimerProgress = new System.Windows.Forms.Timer(this.components);
+            this.BtnAll = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumericChars)).BeginInit();
             this.SuspendLayout();
@@ -185,11 +186,22 @@
             this.TimerProgress.Interval = 1000;
             this.TimerProgress.Tick += new System.EventHandler(this.TimerProgress_Tick);
             // 
+            // BtnAll
+            // 
+            this.BtnAll.Location = new System.Drawing.Point(436, 67);
+            this.BtnAll.Name = "BtnAll";
+            this.BtnAll.Size = new System.Drawing.Size(75, 20);
+            this.BtnAll.TabIndex = 23;
+            this.BtnAll.Text = "All";
+            this.BtnAll.UseVisualStyleBackColor = true;
+            this.BtnAll.Click += new System.EventHandler(this.BtnAll_Click);
+            // 
             // DecodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 398);
+            this.Controls.Add(this.BtnAll);
             this.Controls.Add(this.ProgressBarDecode);
             this.Controls.Add(this.NumericChars);
             this.Controls.Add(this.TextBoxAesPassword);
@@ -229,5 +241,6 @@
         private System.Windows.Forms.ProgressBar ProgressBarDecode;
         private System.Windows.Forms.Timer TimerProgress;
         private System.Windows.Forms.ToolStripMenuItem MenuStripSettingsForm;
+        private System.Windows.Forms.Button BtnAll;
     }
 }

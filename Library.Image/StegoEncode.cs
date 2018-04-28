@@ -35,6 +35,7 @@ namespace Library.Image
         /// <param name="outputFile">The output file.</param>
         public void CreateImage(string msg, string outputFile)
         {
+            EncodeProgress = 0;
             string binary = Converter.AsciiToBinary(msg);
             List<string> msgChunk = Converter.StringSplitToChunks(binary, 3, true);
 
@@ -59,6 +60,7 @@ namespace Library.Image
             }
 
             b.Save(outputFile);
+            b.Dispose();
         }
     }
 }

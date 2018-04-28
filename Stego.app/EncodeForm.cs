@@ -2,6 +2,7 @@
 using Library.Utility;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,11 +21,6 @@ namespace Stego.app
         public StegoEncode StegEncode;
 
         /// <summary>
-        /// The steg decode
-        /// </summary>
-        public StegoDecode StegDecode;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="EncodeForm" /> class.
         /// </summary>
         public EncodeForm()
@@ -39,7 +35,7 @@ namespace Stego.app
         /// </summary>
         /// <param name="spawnLoc">The spawn loc.</param>
         /// <param name="eProg">The e prog.</param>
-        public EncodeForm(Point spawnLoc, StegoEncode stegEncode, StegoDecode stegDecode)
+        public EncodeForm(Point spawnLoc, StegoEncode stegEncode)
         {
             InitializeComponent();
             this.MaximumSize = this.Size;
@@ -47,8 +43,6 @@ namespace Stego.app
 
             this.StartPosition = FormStartPosition.Manual;
             this.Location = spawnLoc;
-
-            this.StegDecode = stegDecode;
 
             if (stegEncode == null)
                 return;
@@ -85,15 +79,6 @@ namespace Stego.app
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private async void BtnEncodeAsync_ClickAsync(object sender, EventArgs e)
         {
-            /*
-            string data = "a";
-            string key = "0123456789123456";
-            string encrypted = Crypto.Encrypt(data, key);
-            Console.WriteLine("Encrypted: " + encrypted);
-
-            string decrypted = Crypto.Decrypt(encrypted, key);
-            Console.WriteLine("Decrypted: " + decrypted);*/
-
             if (!BtnEncodeReady())
                 return;
 
@@ -166,6 +151,16 @@ namespace Stego.app
                 }
             }
 
+            if (File.Exists(this.StegEncode.OutputFile))
+            {
+                DialogResult dr = MessageBox.Show("this file already exists, do you want to override?", "File Exists",
+                                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
+                    File.Delete(this.StegEncode.OutputFile);
+                else
+                    return false;
+            }
+
             return true;
         }
 
@@ -210,7 +205,7 @@ namespace Stego.app
         private void MenuStripDecodeForm_Click(object sender, EventArgs e)
         {
             this.Hide();
-            DecodeForm d = new DecodeForm(this.Location, StegDecode, StegEncode);
+            DecodeForm d = new DecodeForm(this.Location, StegEncode);
             d.ShowDialog();
             this.Close();
         }

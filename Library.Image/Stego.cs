@@ -29,7 +29,12 @@ namespace Library.Image
         public Stego(string filePath, bool loadPixels = true)
         {
             FilePath = filePath;
-            Image = new BitmapImage(new Uri(FilePath));
+            Image = new BitmapImage();
+            Image.CacheOption = BitmapCacheOption.None;
+            Image.BeginInit();
+            Image.UriSource = new Uri(FilePath);
+            Image.EndInit();
+
 
             if (loadPixels)
             {
@@ -77,6 +82,15 @@ namespace Library.Image
             double pixelCount = Pixels.GetLength(0) * Pixels.GetLength(1);
             double rgbCount = pixelCount * 3;
             return (int)Math.Floor(rgbCount / 8);
+        }
+
+        /// <summary>
+        /// Disposes the image.
+        /// </summary>
+        public void DisposeImage()
+        {
+            this.Image = null;
+            GC.Collect();
         }
     }
 }

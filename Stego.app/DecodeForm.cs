@@ -28,7 +28,7 @@ namespace Stego.app
         /// </summary>
         /// <param name="loc">The loc.</param>
         /// <param name="EncodeProg">The encode prog.</param>
-        public DecodeForm(Point loc, StegoDecode stegDecode, StegoEncode stegEncode)
+        public DecodeForm(Point loc, StegoEncode stegEncode)
         {
             InitializeComponent();
             this.MaximumSize = this.Size;
@@ -36,25 +36,7 @@ namespace Stego.app
             this.StartPosition = FormStartPosition.Manual;
             this.Location = loc;
 
-            Initialize(stegDecode, stegEncode);
-        }
-
-        /// <summary>
-        /// Initializes this instance.
-        /// </summary>
-        /// <param name="stegDecode">The steg decode.</param>
-        /// <param name="stegEncode">The steg encode.</param>
-        private void Initialize(StegoDecode stegDecode, StegoEncode stegEncode)
-        {
             this.StegEncode = stegEncode;
-
-            if (stegDecode == null)
-                return;
-
-            this.StegDecode = stegDecode;
-            if (StegDecode.FilePath != null)
-                LblFile.Text = StegDecode.FilePath;
-
         }
 
         /// <summary>
@@ -64,8 +46,11 @@ namespace Stego.app
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void MenuStripEncodeForm_Click(object sender, EventArgs e)
         {
+            if(this.StegDecode != null)
+                this.StegDecode.DisposeImage();
+
             this.Hide();
-            EncodeForm eForm = new EncodeForm(this.Location, StegEncode, StegDecode);
+            EncodeForm eForm = new EncodeForm(this.Location, StegEncode);
             eForm.ShowDialog();
             this.Close();
         }
@@ -169,6 +154,11 @@ namespace Stego.app
             ProgressBarDecode.Value = StegDecode.DecodeProgress;
         }
 
+        /// <summary>
+        /// Handles the Click event of the MenuStripSettingsForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void MenuStripSettingsForm_Click(object sender, EventArgs e)
         {
             SettingsForm sForm = new SettingsForm()
@@ -176,6 +166,19 @@ namespace Stego.app
                 StartPosition = FormStartPosition.CenterParent
             };
             sForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the BtnAll control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void BtnAll_Click(object sender, EventArgs e)
+        {
+            if (StegDecode != null)
+                NumericChars.Value = StegDecode.MaxCharacters;
+            else
+                NumericChars.Value = NumericChars.Maximum;
         }
     }
 }
