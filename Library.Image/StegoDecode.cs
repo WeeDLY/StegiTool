@@ -32,18 +32,29 @@ namespace Library.Image
         /// Reads the image.
         /// </summary>
         /// <returns></returns>
-        public Task<string> ReadImage(int charactersToRead)
+        public Task<string> ReadImage()
         {
-            int chars = charactersToRead * 8;
-            string lsb = GetBits(chars);
-
+            int bytesToRead = GetCharactersToRead() + Constants.MessageLength;
+            string lsb = GetBits(bytesToRead * 8 + Constants.MessageLength * 8);
             List<string> chunks = Converter.StringSplitToChunks(lsb, 8);
             string message = String.Empty;
-            for (int i = 0; i < charactersToRead; i++)
+            for (int i = 9; i < bytesToRead; i++)
             {
                 message += Converter.BinaryToAscii(chunks[i]);
             }
             return Task.FromResult(message);
+        }
+
+        /// <summary>
+        /// Gets the characters to read.
+        /// </summary>
+        /// <returns></returns>
+        public int GetCharactersToRead()
+        {
+            string lsb = GetBits(Constants.MessageLength * 8);
+            lsb = Converter.BinaryToAscii(lsb).Replace("A", "");
+            int.TryParse(lsb, out int charsToRead);
+            return charsToRead;
         }
 
         /// <summary>
@@ -60,10 +71,10 @@ namespace Library.Image
             {
                 for(int y = 0; y < Pixels.GetLength(1); y++)
                 {
-                    if(read > chars)
-                        return bits;
+                    if(read >= chars)
+                        return bits.Substring(0, chars);
                     bits += Pixels[x, y].GetLSB();
-                    read++;
+                    read += 3;
                     DecodeProgress++;
                 }
             }

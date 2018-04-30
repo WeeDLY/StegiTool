@@ -89,5 +89,6 @@ namespace Library.Utility
             byte[] base64Bytes = Convert.FromBase64String(base64);
             return Encoding.UTF8.GetString(base64Bytes);
         }
+
     }
 }

@@ -84,17 +84,12 @@ namespace Stego.app
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void BtnDecode_ClickAsync(object sender, EventArgs e)
         {
-            /*
-            * BIGGEST PROBLEM WITH BASE64, is to determine, what is base64
-            * This regex, will find base64 encoded text
-            * ^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$
-            */
             if(BtnDecodeReady() == false)
             {
                 return;
             }
 
-            int charLength = (int)NumericChars.Value;
+            int charLength = (int)StegDecode.GetCharactersToRead();
             string password = TextBoxAesPassword.Text;
 
             // Set up progress report
@@ -103,7 +98,7 @@ namespace Stego.app
             ProgressBarDecode.Maximum = charLength * 8;
             ProgressBarDecode.Value = 0;
 
-            string message = await Task.Run(() => StegDecode.ReadImage(charLength));
+            string message = await Task.Run(() => StegDecode.ReadImage());
 
             if (checkBoxAes.Checked)
                 message = Crypto.Decrypt(message, password);
@@ -149,6 +144,11 @@ namespace Stego.app
             TextOutput.Text = String.Empty;
         }
 
+        /// <summary>
+        /// Handles the Tick event of the TimerProgress control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void TimerProgress_Tick(object sender, EventArgs e)
         {
             ProgressBarDecode.Value = StegDecode.DecodeProgress;
@@ -166,19 +166,6 @@ namespace Stego.app
                 StartPosition = FormStartPosition.CenterParent
             };
             sForm.ShowDialog();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the BtnAll control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnAll_Click(object sender, EventArgs e)
-        {
-            if (StegDecode != null)
-                NumericChars.Value = StegDecode.MaxCharacters;
-            else
-                NumericChars.Value = NumericChars.Maximum;
         }
     }
 }

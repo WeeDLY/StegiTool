@@ -37,9 +37,14 @@ namespace Library.Image
         {
             EncodeProgress = 0;
             string binary = Converter.AsciiToBinary(msg);
-            List<string> msgChunk = Converter.StringSplitToChunks(binary, 3, true);
-
             Bitmap b = new Bitmap(Pixels.GetLength(0), Pixels.GetLength(1));
+
+            string lengthBinary = msg.Length.ToString();
+            lengthBinary += new String('A', 9 - lengthBinary.Length);
+            lengthBinary = Converter.AsciiToBinary(lengthBinary);
+
+            binary = lengthBinary + binary;
+            List<string> msgChunk = Converter.StringSplitToChunks(binary, 3, true);
 
             for (int x = 0; x < Pixels.GetLength(0); x++)
             {

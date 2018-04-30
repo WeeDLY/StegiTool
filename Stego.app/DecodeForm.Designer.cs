@@ -41,12 +41,9 @@
             this.CheckBoxBase64 = new System.Windows.Forms.CheckBox();
             this.checkBoxAes = new System.Windows.Forms.CheckBox();
             this.TextBoxAesPassword = new System.Windows.Forms.TextBox();
-            this.NumericChars = new System.Windows.Forms.NumericUpDown();
             this.ProgressBarDecode = new System.Windows.Forms.ProgressBar();
             this.TimerProgress = new System.Windows.Forms.Timer(this.components);
-            this.BtnAll = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericChars)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -156,24 +153,6 @@
             this.TextBoxAesPassword.Size = new System.Drawing.Size(357, 20);
             this.TextBoxAesPassword.TabIndex = 20;
             // 
-            // NumericChars
-            // 
-            this.NumericChars.Location = new System.Drawing.Point(301, 67);
-            this.NumericChars.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.NumericChars.Name = "NumericChars";
-            this.NumericChars.Size = new System.Drawing.Size(102, 20);
-            this.NumericChars.TabIndex = 21;
-            this.NumericChars.ThousandsSeparator = true;
-            this.NumericChars.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
             // ProgressBarDecode
             // 
             this.ProgressBarDecode.Location = new System.Drawing.Point(285, 334);
@@ -186,24 +165,12 @@
             this.TimerProgress.Interval = 1000;
             this.TimerProgress.Tick += new System.EventHandler(this.TimerProgress_Tick);
             // 
-            // BtnAll
-            // 
-            this.BtnAll.Location = new System.Drawing.Point(436, 67);
-            this.BtnAll.Name = "BtnAll";
-            this.BtnAll.Size = new System.Drawing.Size(75, 20);
-            this.BtnAll.TabIndex = 23;
-            this.BtnAll.Text = "All";
-            this.BtnAll.UseVisualStyleBackColor = true;
-            this.BtnAll.Click += new System.EventHandler(this.BtnAll_Click);
-            // 
             // DecodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 398);
-            this.Controls.Add(this.BtnAll);
             this.Controls.Add(this.ProgressBarDecode);
-            this.Controls.Add(this.NumericChars);
             this.Controls.Add(this.TextBoxAesPassword);
             this.Controls.Add(this.checkBoxAes);
             this.Controls.Add(this.CheckBoxBase64);
@@ -218,7 +185,6 @@
             this.Text = "StegiTool - Decode";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericChars)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,10 +203,8 @@
         private System.Windows.Forms.CheckBox CheckBoxBase64;
         private System.Windows.Forms.CheckBox checkBoxAes;
         private System.Windows.Forms.TextBox TextBoxAesPassword;
-        private System.Windows.Forms.NumericUpDown NumericChars;
         private System.Windows.Forms.ProgressBar ProgressBarDecode;
         private System.Windows.Forms.Timer TimerProgress;
         private System.Windows.Forms.ToolStripMenuItem MenuStripSettingsForm;
-        private System.Windows.Forms.Button BtnAll;
     }
 }
