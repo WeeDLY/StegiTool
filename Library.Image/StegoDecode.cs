@@ -38,7 +38,7 @@ namespace Library.Image
             string lsb = GetBits(bytesToRead * 8 + Constants.MessageLength * 8);
             List<string> chunks = Converter.StringSplitToChunks(lsb, 8);
             string message = String.Empty;
-            for (int i = 9; i < bytesToRead; i++)
+            for (int i = Constants.MessageLength; i < bytesToRead; i++)
             {
                 message += Converter.BinaryToAscii(chunks[i]);
             }
