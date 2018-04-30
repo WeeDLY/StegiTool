@@ -93,7 +93,7 @@ namespace Stego.app
 
             string message = await Task.Run(() => StegDecode.ReadImage());
 
-            if (checkBoxAes.Checked)
+            if (CheckBoxAes.Checked)
                 message = Crypto.Decrypt(message, password);
 
             if (CheckBoxBase64.Checked)
@@ -117,7 +117,7 @@ namespace Stego.app
                 return false;
             }
 
-            if (checkBoxAes.Checked)
+            if (CheckBoxAes.Checked)
             {
                 if (TextBoxAesPassword.Text.Length <= 0)
                 {
@@ -169,6 +169,16 @@ namespace Stego.app
                     return;
                 }
             }
+        }
+
+        /// <summary>
+        /// Handles the CheckedChanged event of the CheckBoxAes control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void CheckBoxAes_CheckedChanged(object sender, EventArgs e)
+        {
+            TextBoxAesPassword.Enabled = CheckBoxAes.Checked;
         }
     }
 }

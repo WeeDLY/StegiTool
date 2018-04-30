@@ -39,7 +39,7 @@
             this.BtnClear = new System.Windows.Forms.Button();
             this.BtnDecode = new System.Windows.Forms.Button();
             this.CheckBoxBase64 = new System.Windows.Forms.CheckBox();
-            this.checkBoxAes = new System.Windows.Forms.CheckBox();
+            this.CheckBoxAes = new System.Windows.Forms.CheckBox();
             this.TextBoxAesPassword = new System.Windows.Forms.TextBox();
             this.ProgressBarDecode = new System.Windows.Forms.ProgressBar();
             this.TimerProgress = new System.Windows.Forms.Timer(this.components);
@@ -136,18 +136,20 @@
             this.CheckBoxBase64.Text = "Base 64";
             this.CheckBoxBase64.UseVisualStyleBackColor = true;
             // 
-            // checkBoxAes
+            // CheckBoxAes
             // 
-            this.checkBoxAes.AutoSize = true;
-            this.checkBoxAes.Location = new System.Drawing.Point(287, 163);
-            this.checkBoxAes.Name = "checkBoxAes";
-            this.checkBoxAes.Size = new System.Drawing.Size(47, 17);
-            this.checkBoxAes.TabIndex = 19;
-            this.checkBoxAes.Text = "AES";
-            this.checkBoxAes.UseVisualStyleBackColor = true;
+            this.CheckBoxAes.AutoSize = true;
+            this.CheckBoxAes.Location = new System.Drawing.Point(287, 163);
+            this.CheckBoxAes.Name = "CheckBoxAes";
+            this.CheckBoxAes.Size = new System.Drawing.Size(47, 17);
+            this.CheckBoxAes.TabIndex = 19;
+            this.CheckBoxAes.Text = "AES";
+            this.CheckBoxAes.UseVisualStyleBackColor = true;
+            this.CheckBoxAes.CheckedChanged += new System.EventHandler(this.CheckBoxAes_CheckedChanged);
             // 
             // TextBoxAesPassword
             // 
+            this.TextBoxAesPassword.Enabled = false;
             this.TextBoxAesPassword.Location = new System.Drawing.Point(285, 186);
             this.TextBoxAesPassword.Name = "TextBoxAesPassword";
             this.TextBoxAesPassword.Size = new System.Drawing.Size(357, 20);
@@ -172,7 +174,7 @@
             this.ClientSize = new System.Drawing.Size(656, 398);
             this.Controls.Add(this.ProgressBarDecode);
             this.Controls.Add(this.TextBoxAesPassword);
-            this.Controls.Add(this.checkBoxAes);
+            this.Controls.Add(this.CheckBoxAes);
             this.Controls.Add(this.CheckBoxBase64);
             this.Controls.Add(this.BtnDecode);
             this.Controls.Add(this.BtnClear);
@@ -201,7 +203,7 @@
         private System.Windows.Forms.Button BtnClear;
         private System.Windows.Forms.Button BtnDecode;
         private System.Windows.Forms.CheckBox CheckBoxBase64;
-        private System.Windows.Forms.CheckBox checkBoxAes;
+        private System.Windows.Forms.CheckBox CheckBoxAes;
         private System.Windows.Forms.TextBox TextBoxAesPassword;
         private System.Windows.Forms.ProgressBar ProgressBarDecode;
         private System.Windows.Forms.Timer TimerProgress;

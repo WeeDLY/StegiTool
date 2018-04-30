@@ -84,28 +84,28 @@
             // 
             this.TextBoxKeySize.Location = new System.Drawing.Point(62, 162);
             this.TextBoxKeySize.Name = "TextBoxKeySize";
-            this.TextBoxKeySize.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxKeySize.Size = new System.Drawing.Size(153, 20);
             this.TextBoxKeySize.TabIndex = 3;
             // 
             // TextBoxHash
             // 
             this.TextBoxHash.Location = new System.Drawing.Point(62, 188);
             this.TextBoxHash.Name = "TextBoxHash";
-            this.TextBoxHash.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHash.Size = new System.Drawing.Size(153, 20);
             this.TextBoxHash.TabIndex = 4;
             // 
             // TextBoxSalt
             // 
             this.TextBoxSalt.Location = new System.Drawing.Point(62, 214);
             this.TextBoxSalt.Name = "TextBoxSalt";
-            this.TextBoxSalt.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxSalt.Size = new System.Drawing.Size(153, 20);
             this.TextBoxSalt.TabIndex = 5;
             // 
             // TextBoxVector
             // 
             this.TextBoxVector.Location = new System.Drawing.Point(62, 240);
             this.TextBoxVector.Name = "TextBoxVector";
-            this.TextBoxVector.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxVector.Size = new System.Drawing.Size(153, 20);
             this.TextBoxVector.TabIndex = 6;
             // 
             // BtnResetSettings

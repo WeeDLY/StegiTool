@@ -198,6 +198,7 @@
             // 
             // TextBoxAesKey
             // 
+            this.TextBoxAesKey.Enabled = false;
             this.TextBoxAesKey.Location = new System.Drawing.Point(309, 146);
             this.TextBoxAesKey.Name = "TextBoxAesKey";
             this.TextBoxAesKey.Size = new System.Drawing.Size(335, 20);

@@ -270,6 +270,7 @@ namespace Stego.app
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void CheckBoxAes_CheckedChanged(object sender, EventArgs e)
         {
+            TextBoxAesKey.Enabled = CheckBoxAes.Checked;
             TextMessage_TextChanged(null, null);
         }
 
