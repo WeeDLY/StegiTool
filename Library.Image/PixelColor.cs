@@ -1,5 +1,4 @@
-﻿using Library.Utility;
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace Library.Image

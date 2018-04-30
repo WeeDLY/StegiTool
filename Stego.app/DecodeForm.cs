@@ -56,26 +56,19 @@ namespace Stego.app
         }
 
         /// <summary>
-        /// Handles the Click event of the BtnSelectFile control.
+        /// Handles the Click event of the MenuStripSettingsForm control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnSelectFile_Click(object sender, EventArgs e)
+        private void MenuStripSettingsForm_Click(object sender, EventArgs e)
         {
-            using (var ofd = new OpenFileDialog())
+            SettingsForm sForm = new SettingsForm()
             {
-                ofd.Filter = Constants.ImageFileFilter;
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    StegDecode = new StegoDecode(ofd.FileName);
-                    LblFile.Text = StegDecode.FilePath;
-                }
-                else
-                {
-                    return;
-                }
-            }
+                StartPosition = FormStartPosition.CenterParent
+            };
+            sForm.ShowDialog();
         }
+
 
         /// <summary>
         /// Handles the Click event of the BtnDecode control.
@@ -111,6 +104,7 @@ namespace Stego.app
             ProgressBarDecode.Value = ProgressBarDecode.Maximum;
             TimerProgress.Stop();
         }
+
         /// <summary>
         /// BTNs the decode ready.
         /// </summary>
@@ -133,16 +127,6 @@ namespace Stego.app
             }
             return true;
         }
-        
-        /// <summary>
-        /// Handles the Click event of the BtnClear control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnClear_Click(object sender, EventArgs e)
-        {
-            TextOutput.Text = String.Empty;
-        }
 
         /// <summary>
         /// Handles the Tick event of the TimerProgress control.
@@ -154,18 +138,37 @@ namespace Stego.app
             ProgressBarDecode.Value = StegDecode.DecodeProgress;
         }
 
+
         /// <summary>
-        /// Handles the Click event of the MenuStripSettingsForm control.
+        /// Handles the Click event of the BtnClear control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void MenuStripSettingsForm_Click(object sender, EventArgs e)
+        private void BtnClear_Click(object sender, EventArgs e)
         {
-            SettingsForm sForm = new SettingsForm()
+            TextOutput.Text = String.Empty;
+        }
+
+        /// <summary>
+        /// Handles the Click event of the BtnSelectFile control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void BtnSelectFile_Click(object sender, EventArgs e)
+        {
+            using (var ofd = new OpenFileDialog())
             {
-                StartPosition = FormStartPosition.CenterParent
-            };
-            sForm.ShowDialog();
+                ofd.Filter = Constants.ImageFileFilter;
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    StegDecode = new StegoDecode(ofd.FileName);
+                    LblFile.Text = StegDecode.FilePath;
+                }
+                else
+                {
+                    return;
+                }
+            }
         }
     }
 }

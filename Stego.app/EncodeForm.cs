@@ -55,22 +55,32 @@ namespace Stego.app
         }
 
         /// <summary>
-        /// Handles the Click event of the BtnSelectFile control.
+        /// Handles the Click event of the MenuStripDecodeForm control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-        private void BtnSelectFile_Click(object sender, EventArgs e)
+        private void MenuStripDecodeForm_Click(object sender, EventArgs e)
         {
-            using(var ofd = new OpenFileDialog())
-            {
-                ofd.Filter = Constants.ImageFileFilter;
-                if(ofd.ShowDialog() == DialogResult.OK)
-                {
-                    StegEncode = new StegoEncode(ofd.FileName);
-                    LblFile.Text = StegEncode.FilePath;
-                }
-            }
+            this.Hide();
+            DecodeForm d = new DecodeForm(this.Location, StegEncode);
+            d.ShowDialog();
+            this.Close();
         }
+
+        /// <summary>
+        /// Handles the Click event of the MenuStripSettingsForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void MenuStripSettingsForm_Click(object sender, EventArgs e)
+        {
+            SettingsForm sForm = new SettingsForm
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            sForm.ShowDialog();
+        }
+
 
         /// <summary>
         /// Handles the Click event of the BtnEncode control.
@@ -165,6 +175,16 @@ namespace Stego.app
         }
 
         /// <summary>
+        /// Handles the Tick event of the TimerProgress control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TimerProgress_Tick(object sender, EventArgs e)
+        {
+            ProgressBarEncode.Value = StegEncode.EncodeProgress;
+        }
+
+        /// <summary>
         /// Handles the Click event of the BtnClear control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -198,20 +218,27 @@ namespace Stego.app
         }
 
         /// <summary>
-        /// Handles the Click event of the MenuStripDecodeForm control.
+        /// Handles the Click event of the BtnSelectFile control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-        private void MenuStripDecodeForm_Click(object sender, EventArgs e)
+        private void BtnSelectFile_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            DecodeForm d = new DecodeForm(this.Location, StegEncode);
-            d.ShowDialog();
-            this.Close();
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.Filter = Constants.ImageFileFilter;
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    StegEncode = new StegoEncode(ofd.FileName);
+                    LblFile.Text = StegEncode.FilePath;
+                }
+            }
         }
+
 
         /// <summary>
         /// Handles the TextChanged event of the TextMessage control.
+        /// Handles the CheckBoxBase64_CheckedChanged control
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -237,27 +264,14 @@ namespace Stego.app
         }
 
         /// <summary>
-        /// Handles the Tick event of the TimerProgress control.
+        /// Handles the CheckedChanged event of the CheckBoxAes control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void TimerProgress_Tick(object sender, EventArgs e)
-        {
-            ProgressBarEncode.Value = StegEncode.EncodeProgress;
-        }
-
         private void CheckBoxAes_CheckedChanged(object sender, EventArgs e)
         {
             TextMessage_TextChanged(null, null);
         }
 
-        private void MenuStripSettingsForm_Click(object sender, EventArgs e)
-        {
-            SettingsForm sForm = new SettingsForm
-            {
-                StartPosition = FormStartPosition.CenterParent
-            };
-            sForm.ShowDialog();
-        }
     }
 }
