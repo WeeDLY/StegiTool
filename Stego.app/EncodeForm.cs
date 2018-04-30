@@ -146,7 +146,7 @@ namespace Stego.app
                 return false;
             }
 
-            if (message.Length > StegEncode.MaxCharacters)
+            if ((Constants.MessageLength * 8) + message.Length > StegEncode.MaxCharacters)
             {
                 MessageBox.Show("Your hidden message is too long");
                 return false;
@@ -258,8 +258,8 @@ namespace Stego.app
                 {
                     text = Crypto.Encrypt(text, "filler");
                 }
-
-                LblCharacterCount.Text = String.Format("Characters: {0}/{1}", text.Length, StegEncode.MaxCharacters);
+                int characters = (Constants.MessageLength * 8) + text.Length;
+                LblCharacterCount.Text = String.Format("Characters: {0}/{1}", characters , StegEncode.MaxCharacters);
             }
         }
 

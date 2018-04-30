@@ -77,7 +77,19 @@ namespace Library.Utility
         {
             byte[] vectorBytes = Encoding.ASCII.GetBytes(Settings.Vector);
             byte[] saltBytes = Encoding.ASCII.GetBytes(Settings.Salt);
-            byte[] valueBytes = Convert.FromBase64String(value);
+            byte[] valueBytes;
+            try
+            {
+                valueBytes = Convert.FromBase64String(value);
+            }
+            catch(FormatException e)
+            {
+                return e.Message;
+            }
+            catch(Exception e)
+            {
+                return "Something went horribly wrong";
+            }
 
             byte[] decrypted;
             int decryptedByteCount = 0;
@@ -101,7 +113,7 @@ namespace Library.Utility
                 }
                 catch (Exception ex)
                 {
-                    return String.Empty;
+                    return "Wrong password";
                 }
 
                 cipher.Clear();

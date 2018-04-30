@@ -86,9 +86,19 @@ namespace Library.Utility
         /// <returns></returns>
         public static string Base64ToAscii(string base64)
         {
-            byte[] base64Bytes = Convert.FromBase64String(base64);
-            return Encoding.UTF8.GetString(base64Bytes);
+            try
+            {
+                byte[] base64Bytes = Convert.FromBase64String(base64);
+                return Encoding.UTF8.GetString(base64Bytes);
+            }
+            catch (FormatException e)
+            {
+                return base64;
+            }
+            catch (Exception ex)
+            {
+                return "Something went horribly wrong";
+            }
         }
-
     }
 }
