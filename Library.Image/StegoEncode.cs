@@ -40,7 +40,7 @@ namespace Library.Image
             Bitmap b = new Bitmap(Pixels.GetLength(0), Pixels.GetLength(1));
 
             string lengthBinary = msg.Length.ToString();
-            lengthBinary += new String('A', 9 - lengthBinary.Length);
+            lengthBinary += new String('A', Constants.MessageLength - lengthBinary.Length);
             lengthBinary = Converter.AsciiToBinary(lengthBinary);
 
             binary = lengthBinary + binary;
