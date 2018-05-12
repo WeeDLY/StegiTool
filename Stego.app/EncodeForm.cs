@@ -49,7 +49,6 @@ namespace Stego.app
 
             this.StegEncode = stegEncode;
             this.StegEncode.OutputFile = stegEncode.OutputFile;
-
             if (stegEncode.FilePath != null)
                 LblFile.Text = stegEncode.FilePath;
         }
@@ -222,7 +221,7 @@ namespace Stego.app
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-        private void BtnSelectFile_Click(object sender, EventArgs e)
+        private async void BtnSelectFile_ClickAsync(object sender, EventArgs e)
         {
             using (var ofd = new OpenFileDialog())
             {
@@ -231,6 +230,9 @@ namespace Stego.app
                 {
                     StegEncode = new StegoEncode(ofd.FileName);
                     LblFile.Text = StegEncode.FilePath;
+                    PictureSelectFile.Image = Properties.Resources.Loading;
+                    await Task.Run(() => StegEncode.StartLoadingPixelsAsync());
+                    PictureSelectFile.Image = Properties.Resources.Ready;
                 }
             }
         }

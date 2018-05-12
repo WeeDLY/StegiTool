@@ -154,7 +154,7 @@ namespace Stego.app
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnSelectFile_Click(object sender, EventArgs e)
+        private async void BtnSelectFile_Click(object sender, EventArgs e)
         {
             using (var ofd = new OpenFileDialog())
             {
@@ -163,6 +163,11 @@ namespace Stego.app
                 {
                     StegDecode = new StegoDecode(ofd.FileName);
                     LblFile.Text = StegDecode.FilePath;
+
+                    PictureSelectFile.Image = Properties.Resources.Loading;
+                    await Task.Run(() => StegDecode.StartLoadingPixelsAsync());
+                    PictureSelectFile.Image = Properties.Resources.Ready;
+
                 }
                 else
                 {

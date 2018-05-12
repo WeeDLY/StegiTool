@@ -47,7 +47,9 @@
             this.CheckBoxAes = new System.Windows.Forms.CheckBox();
             this.TextBoxAesKey = new System.Windows.Forms.TextBox();
             this.ToolTipAes = new System.Windows.Forms.ToolTip(this.components);
+            this.PictureSelectFile = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureSelectFile)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnSelectFile
@@ -58,7 +60,7 @@
             this.BtnSelectFile.TabIndex = 0;
             this.BtnSelectFile.Text = "Select File";
             this.BtnSelectFile.UseVisualStyleBackColor = true;
-            this.BtnSelectFile.Click += new System.EventHandler(this.BtnSelectFile_Click);
+            this.BtnSelectFile.Click += new System.EventHandler(this.BtnSelectFile_ClickAsync);
             // 
             // BtnEncode
             // 
@@ -210,11 +212,21 @@
             this.ToolTipAes.InitialDelay = 250;
             this.ToolTipAes.ReshowDelay = 100;
             // 
+            // PictureSelectFile
+            // 
+            this.PictureSelectFile.BackColor = System.Drawing.SystemColors.Control;
+            this.PictureSelectFile.Location = new System.Drawing.Point(287, 26);
+            this.PictureSelectFile.Name = "PictureSelectFile";
+            this.PictureSelectFile.Size = new System.Drawing.Size(24, 24);
+            this.PictureSelectFile.TabIndex = 16;
+            this.PictureSelectFile.TabStop = false;
+            // 
             // EncodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 398);
+            this.Controls.Add(this.PictureSelectFile);
             this.Controls.Add(this.TextBoxAesKey);
             this.Controls.Add(this.CheckBoxAes);
             this.Controls.Add(this.CheckBoxBase64);
@@ -233,6 +245,7 @@
             this.Text = "StegiTool - Encode";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureSelectFile)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,6 +271,7 @@
         private System.Windows.Forms.TextBox TextBoxAesKey;
         private System.Windows.Forms.ToolTip ToolTipAes;
         private System.Windows.Forms.ToolStripMenuItem MenuStripSettingsForm;
+        private System.Windows.Forms.PictureBox PictureSelectFile;
     }
 }
 

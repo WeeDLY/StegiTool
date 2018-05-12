@@ -43,7 +43,9 @@
             this.TextBoxAesPassword = new System.Windows.Forms.TextBox();
             this.ProgressBarDecode = new System.Windows.Forms.ProgressBar();
             this.TimerProgress = new System.Windows.Forms.Timer(this.components);
+            this.PictureSelectFile = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureSelectFile)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -167,11 +169,20 @@
             this.TimerProgress.Interval = 1000;
             this.TimerProgress.Tick += new System.EventHandler(this.TimerProgress_Tick);
             // 
+            // PictureSelectFile
+            // 
+            this.PictureSelectFile.Location = new System.Drawing.Point(287, 26);
+            this.PictureSelectFile.Name = "PictureSelectFile";
+            this.PictureSelectFile.Size = new System.Drawing.Size(24, 24);
+            this.PictureSelectFile.TabIndex = 23;
+            this.PictureSelectFile.TabStop = false;
+            // 
             // DecodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 398);
+            this.Controls.Add(this.PictureSelectFile);
             this.Controls.Add(this.ProgressBarDecode);
             this.Controls.Add(this.TextBoxAesPassword);
             this.Controls.Add(this.CheckBoxAes);
@@ -187,6 +198,7 @@
             this.Text = "StegiTool - Decode";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureSelectFile)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +220,6 @@
         private System.Windows.Forms.ProgressBar ProgressBarDecode;
         private System.Windows.Forms.Timer TimerProgress;
         private System.Windows.Forms.ToolStripMenuItem MenuStripSettingsForm;
+        private System.Windows.Forms.PictureBox PictureSelectFile;
     }
 }

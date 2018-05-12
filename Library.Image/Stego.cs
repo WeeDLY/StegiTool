@@ -26,31 +26,27 @@ namespace Library.Image
         /// </summary>
         /// <param name="filePath">The file path.</param>
         /// <param name="loadPixels">if set to <c>true</c> [load pixels].</param>
-        public Stego(string filePath, bool loadPixels = true)
+        public Stego(string filePath, bool loadPixels = false)
         {
             FilePath = filePath;
-            Image = new BitmapImage();
-            Image.CacheOption = BitmapCacheOption.None;
+            Image = new BitmapImage
+            {
+                CacheOption = BitmapCacheOption.None
+            };
             Image.BeginInit();
             Image.UriSource = new Uri(FilePath);
             Image.EndInit();
-
-
-            if (loadPixels)
-            {
-                StartLoadingPixelsAsync();
-            }
         }
 
         /// <summary>
         /// Starts the loading pixels asynchronous.
         /// </summary>
-        public async void StartLoadingPixelsAsync()
+        public async Task StartLoadingPixelsAsync()
         {
             if (FilePath == null)
                 return;
 
-            await Task.Run(() => LoadPixels());
+            await Task.Run(() => LoadPixelsAsync());
             PixelLoaded = true;
             MaxCharacters = GetMaxCharacters();
         }
@@ -58,7 +54,7 @@ namespace Library.Image
         /// <summary>
         /// Loads the pixels.
         /// </summary>
-        private void LoadPixels()
+        private async Task LoadPixelsAsync()
         {
             Bitmap b = new Bitmap(FilePath);
             Pixels = new PixelColor[b.Width, b.Height];
@@ -71,6 +67,7 @@ namespace Library.Image
                 }
             }
             PixelLoaded = true;
+            await Task.CompletedTask;
         }
 
         /// <summary>
