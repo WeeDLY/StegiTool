@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.BtnSave = new System.Windows.Forms.Button();
             this.NumericIterations = new System.Windows.Forms.NumericUpDown();
             this.TextBoxKeySize = new System.Windows.Forms.TextBox();
@@ -36,21 +35,17 @@
             this.TextBoxSalt = new System.Windows.Forms.TextBox();
             this.TextBoxVector = new System.Windows.Forms.TextBox();
             this.BtnResetSettings = new System.Windows.Forms.Button();
+            this.LblHashIterations = new System.Windows.Forms.Label();
+            this.LblKeySize = new System.Windows.Forms.Label();
+            this.LblHashType = new System.Windows.Forms.Label();
+            this.LblSalt = new System.Windows.Forms.Label();
+            this.LblVector = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NumericIterations)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Cryptography Settings";
-            // 
             // BtnSave
             // 
-            this.BtnSave.Location = new System.Drawing.Point(62, 286);
+            this.BtnSave.Location = new System.Drawing.Point(15, 147);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(75, 23);
             this.BtnSave.TabIndex = 1;
@@ -60,7 +55,7 @@
             // 
             // NumericIterations
             // 
-            this.NumericIterations.Location = new System.Drawing.Point(72, 136);
+            this.NumericIterations.Location = new System.Drawing.Point(118, 9);
             this.NumericIterations.Maximum = new decimal(new int[] {
             10,
             0,
@@ -75,42 +70,42 @@
             this.NumericIterations.Size = new System.Drawing.Size(36, 20);
             this.NumericIterations.TabIndex = 2;
             this.NumericIterations.Value = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
             // 
             // TextBoxKeySize
             // 
-            this.TextBoxKeySize.Location = new System.Drawing.Point(62, 162);
+            this.TextBoxKeySize.Location = new System.Drawing.Point(118, 36);
             this.TextBoxKeySize.Name = "TextBoxKeySize";
             this.TextBoxKeySize.Size = new System.Drawing.Size(153, 20);
             this.TextBoxKeySize.TabIndex = 3;
             // 
             // TextBoxHash
             // 
-            this.TextBoxHash.Location = new System.Drawing.Point(62, 188);
+            this.TextBoxHash.Location = new System.Drawing.Point(118, 62);
             this.TextBoxHash.Name = "TextBoxHash";
             this.TextBoxHash.Size = new System.Drawing.Size(153, 20);
             this.TextBoxHash.TabIndex = 4;
             // 
             // TextBoxSalt
             // 
-            this.TextBoxSalt.Location = new System.Drawing.Point(62, 214);
+            this.TextBoxSalt.Location = new System.Drawing.Point(118, 88);
             this.TextBoxSalt.Name = "TextBoxSalt";
             this.TextBoxSalt.Size = new System.Drawing.Size(153, 20);
             this.TextBoxSalt.TabIndex = 5;
             // 
             // TextBoxVector
             // 
-            this.TextBoxVector.Location = new System.Drawing.Point(62, 240);
+            this.TextBoxVector.Location = new System.Drawing.Point(118, 114);
             this.TextBoxVector.Name = "TextBoxVector";
             this.TextBoxVector.Size = new System.Drawing.Size(153, 20);
             this.TextBoxVector.TabIndex = 6;
             // 
             // BtnResetSettings
             // 
-            this.BtnResetSettings.Location = new System.Drawing.Point(278, 286);
+            this.BtnResetSettings.Location = new System.Drawing.Point(196, 147);
             this.BtnResetSettings.Name = "BtnResetSettings";
             this.BtnResetSettings.Size = new System.Drawing.Size(75, 23);
             this.BtnResetSettings.TabIndex = 7;
@@ -118,11 +113,61 @@
             this.BtnResetSettings.UseVisualStyleBackColor = true;
             this.BtnResetSettings.Click += new System.EventHandler(this.BtnResetSettings_Click);
             // 
+            // LblHashIterations
+            // 
+            this.LblHashIterations.Location = new System.Drawing.Point(12, 9);
+            this.LblHashIterations.Name = "LblHashIterations";
+            this.LblHashIterations.Size = new System.Drawing.Size(100, 16);
+            this.LblHashIterations.TabIndex = 8;
+            this.LblHashIterations.Text = "Hash iterations";
+            this.LblHashIterations.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LblKeySize
+            // 
+            this.LblKeySize.Location = new System.Drawing.Point(12, 36);
+            this.LblKeySize.Name = "LblKeySize";
+            this.LblKeySize.Size = new System.Drawing.Size(100, 16);
+            this.LblKeySize.TabIndex = 9;
+            this.LblKeySize.Text = "Key Size";
+            this.LblKeySize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LblHashType
+            // 
+            this.LblHashType.Location = new System.Drawing.Point(12, 62);
+            this.LblHashType.Name = "LblHashType";
+            this.LblHashType.Size = new System.Drawing.Size(100, 16);
+            this.LblHashType.TabIndex = 10;
+            this.LblHashType.Text = "Hash Type";
+            this.LblHashType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LblSalt
+            // 
+            this.LblSalt.Location = new System.Drawing.Point(12, 89);
+            this.LblSalt.Name = "LblSalt";
+            this.LblSalt.Size = new System.Drawing.Size(100, 16);
+            this.LblSalt.TabIndex = 11;
+            this.LblSalt.Text = "Salt";
+            this.LblSalt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LblVector
+            // 
+            this.LblVector.Location = new System.Drawing.Point(12, 115);
+            this.LblVector.Name = "LblVector";
+            this.LblVector.Size = new System.Drawing.Size(100, 16);
+            this.LblVector.TabIndex = 12;
+            this.LblVector.Text = "Vector";
+            this.LblVector.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 321);
+            this.ClientSize = new System.Drawing.Size(288, 177);
+            this.Controls.Add(this.LblVector);
+            this.Controls.Add(this.LblSalt);
+            this.Controls.Add(this.LblHashType);
+            this.Controls.Add(this.LblKeySize);
+            this.Controls.Add(this.LblHashIterations);
             this.Controls.Add(this.BtnResetSettings);
             this.Controls.Add(this.TextBoxVector);
             this.Controls.Add(this.TextBoxSalt);
@@ -130,9 +175,8 @@
             this.Controls.Add(this.TextBoxKeySize);
             this.Controls.Add(this.NumericIterations);
             this.Controls.Add(this.BtnSave);
-            this.Controls.Add(this.label1);
             this.Name = "SettingsForm";
-            this.Text = "Settings";
+            this.Text = "StegiTool - Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NumericIterations)).EndInit();
             this.ResumeLayout(false);
@@ -141,8 +185,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.NumericUpDown NumericIterations;
         private System.Windows.Forms.TextBox TextBoxKeySize;
@@ -150,5 +192,10 @@
         private System.Windows.Forms.TextBox TextBoxSalt;
         private System.Windows.Forms.TextBox TextBoxVector;
         private System.Windows.Forms.Button BtnResetSettings;
+        private System.Windows.Forms.Label LblHashIterations;
+        private System.Windows.Forms.Label LblKeySize;
+        private System.Windows.Forms.Label LblHashType;
+        private System.Windows.Forms.Label LblSalt;
+        private System.Windows.Forms.Label LblVector;
     }
 }

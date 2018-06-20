@@ -29,6 +29,8 @@ namespace Stego.app
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
+            PictureSelectFile.Image = Properties.Resources.Error;
+            PictureBoxBase64.Image = Properties.Resources.Warning;
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="EncodeForm" /> class.
@@ -44,6 +46,9 @@ namespace Stego.app
             this.StartPosition = FormStartPosition.Manual;
             this.Location = spawnLoc;
 
+            PictureSelectFile.Image = Properties.Resources.Error;
+            PictureBoxBase64.Image = Properties.Resources.Error;
+
             if (stegEncode == null)
                 return;
 
@@ -51,6 +56,16 @@ namespace Stego.app
             this.StegEncode.OutputFile = stegEncode.OutputFile;
             if (stegEncode.FilePath != null)
                 LblFile.Text = stegEncode.FilePath;
+
+            // Fixes icon for PictureSelectFile
+            if (this.StegEncode.PixelLoaded)
+            {
+                PictureSelectFile.Image = Properties.Resources.Ready;
+            }
+            else
+            {
+                LoadFile(this.StegEncode.FilePath);
+            }
         }
 
         /// <summary>
@@ -97,7 +112,14 @@ namespace Stego.app
                 message = Converter.AsciiToBase64(message);
 
             if (CheckBoxAes.Checked)
+            {
                 message = Crypto.Encrypt(message, TextBoxAesKey.Text);
+                if(message == null)
+                {
+                    MessageBox.Show(String.Format("{0} is not a valid hash type", Settings.Hash));
+                    return;
+                }
+            }
             BtnEncode.Enabled = false;
 
             // Set up progress report
@@ -221,22 +243,32 @@ namespace Stego.app
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-        private async void BtnSelectFile_ClickAsync(object sender, EventArgs e)
+        private void BtnSelectFile_Click(object sender, EventArgs e)
         {
             using (var ofd = new OpenFileDialog())
             {
                 ofd.Filter = Constants.ImageFileFilter;
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    StegEncode = new StegoEncode(ofd.FileName);
-                    LblFile.Text = StegEncode.FilePath;
-                    PictureSelectFile.Image = Properties.Resources.Loading;
-                    await Task.Run(() => StegEncode.StartLoadingPixelsAsync());
-                    PictureSelectFile.Image = Properties.Resources.Ready;
+                    LoadFile(ofd.FileName);
                 }
             }
         }
 
+        /// <summary>
+        /// Loads the selected file
+        /// </summary>
+        private async void LoadFile(string file)
+        {
+            if(StegEncode == null)
+            {
+                StegEncode = new StegoEncode(file);
+            }
+            LblFile.Text = StegEncode.FilePath;
+            PictureSelectFile.Image = Properties.Resources.Loading;
+            await Task.Run(() => StegEncode.StartLoadingPixelsAsync());
+            PictureSelectFile.Image = Properties.Resources.Ready;
+        }
 
         /// <summary>
         /// Handles the TextChanged event of the TextMessage control.
@@ -259,6 +291,8 @@ namespace Stego.app
                 if (CheckBoxAes.Checked)
                 {
                     text = Crypto.Encrypt(text, "filler");
+                    if (text == null)
+                        return;
                 }
                 int characters = (Constants.MessageLength * 8) + text.Length;
                 LblCharacterCount.Text = String.Format("Characters: {0}/{1}", characters , StegEncode.MaxCharacters);
@@ -276,5 +310,25 @@ namespace Stego.app
             TextMessage_TextChanged(null, null);
         }
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the CheckBoxBase64 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void CheckBoxBase64_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CheckBoxBase64.Checked)
+            {
+                PictureBoxBase64.Enabled = false;
+                PictureBoxBase64.Visible = false;
+            }
+            else
+            {
+                PictureBoxBase64.Enabled = true;
+                PictureBoxBase64.Visible = true;
+            }
+
+            TextMessage_TextChanged(null, null);
+        }
     }
 }

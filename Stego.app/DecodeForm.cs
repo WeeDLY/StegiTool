@@ -37,6 +37,8 @@ namespace Stego.app
             this.Location = loc;
 
             this.StegEncode = stegEncode;
+
+            PictureSelectFile.Image = Properties.Resources.Error;
         }
 
         /// <summary>
@@ -94,7 +96,17 @@ namespace Stego.app
             string message = await Task.Run(() => StegDecode.ReadImage());
 
             if (CheckBoxAes.Checked)
+            {
                 message = Crypto.Decrypt(message, password);
+                if (message == null)
+                {
+                    TimerProgress.Stop();
+                    BtnDecode.Enabled = true;
+
+                    MessageBox.Show(String.Format("{0} is not a valid hash type", Settings.Hash));
+                    return;
+                }
+            }
 
             if (CheckBoxBase64.Checked)
                 message = Converter.Base64ToAscii(message);

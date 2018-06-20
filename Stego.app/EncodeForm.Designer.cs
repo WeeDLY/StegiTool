@@ -48,8 +48,11 @@
             this.TextBoxAesKey = new System.Windows.Forms.TextBox();
             this.ToolTipAes = new System.Windows.Forms.ToolTip(this.components);
             this.PictureSelectFile = new System.Windows.Forms.PictureBox();
+            this.PictureBoxBase64 = new System.Windows.Forms.PictureBox();
+            this.ToolTipBase64 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureSelectFile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxBase64)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnSelectFile
@@ -60,13 +63,13 @@
             this.BtnSelectFile.TabIndex = 0;
             this.BtnSelectFile.Text = "Select File";
             this.BtnSelectFile.UseVisualStyleBackColor = true;
-            this.BtnSelectFile.Click += new System.EventHandler(this.BtnSelectFile_ClickAsync);
+            this.BtnSelectFile.Click += new System.EventHandler(this.BtnSelectFile_Click);
             // 
             // BtnEncode
             // 
-            this.BtnEncode.Location = new System.Drawing.Point(287, 305);
+            this.BtnEncode.Location = new System.Drawing.Point(406, 224);
             this.BtnEncode.Name = "BtnEncode";
-            this.BtnEncode.Size = new System.Drawing.Size(357, 23);
+            this.BtnEncode.Size = new System.Drawing.Size(238, 23);
             this.BtnEncode.TabIndex = 3;
             this.BtnEncode.Text = "Encode";
             this.BtnEncode.UseVisualStyleBackColor = true;
@@ -74,9 +77,9 @@
             // 
             // TextMessage
             // 
-            this.TextMessage.Location = new System.Drawing.Point(12, 82);
+            this.TextMessage.Location = new System.Drawing.Point(8, 82);
             this.TextMessage.Name = "TextMessage";
-            this.TextMessage.Size = new System.Drawing.Size(269, 275);
+            this.TextMessage.Size = new System.Drawing.Size(388, 194);
             this.TextMessage.TabIndex = 5;
             this.TextMessage.Text = "";
             this.TextMessage.TextChanged += new System.EventHandler(this.TextMessage_TextChanged);
@@ -117,14 +120,14 @@
             // 
             this.LblFile.Location = new System.Drawing.Point(93, 27);
             this.LblFile.Name = "LblFile";
-            this.LblFile.Size = new System.Drawing.Size(188, 23);
+            this.LblFile.Size = new System.Drawing.Size(273, 23);
             this.LblFile.TabIndex = 7;
             this.LblFile.Text = "<Selected File>";
             this.LblFile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BtnClear
             // 
-            this.BtnClear.Location = new System.Drawing.Point(12, 366);
+            this.BtnClear.Location = new System.Drawing.Point(12, 282);
             this.BtnClear.Name = "BtnClear";
             this.BtnClear.Size = new System.Drawing.Size(75, 23);
             this.BtnClear.TabIndex = 8;
@@ -136,7 +139,7 @@
             // 
             this.LblOutputFile.Location = new System.Drawing.Point(93, 56);
             this.LblOutputFile.Name = "LblOutputFile";
-            this.LblOutputFile.Size = new System.Drawing.Size(188, 23);
+            this.LblOutputFile.Size = new System.Drawing.Size(273, 23);
             this.LblOutputFile.TabIndex = 9;
             this.LblOutputFile.Text = "<Output File>";
             this.LblOutputFile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -153,9 +156,9 @@
             // 
             // LblCharacterCount
             // 
-            this.LblCharacterCount.Location = new System.Drawing.Point(93, 366);
+            this.LblCharacterCount.Location = new System.Drawing.Point(93, 282);
             this.LblCharacterCount.Name = "LblCharacterCount";
-            this.LblCharacterCount.Size = new System.Drawing.Size(188, 23);
+            this.LblCharacterCount.Size = new System.Drawing.Size(303, 23);
             this.LblCharacterCount.TabIndex = 11;
             this.LblCharacterCount.Text = "Characters: 0/0";
             this.LblCharacterCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -167,30 +170,28 @@
             // 
             // ProgressBarEncode
             // 
-            this.ProgressBarEncode.Location = new System.Drawing.Point(287, 334);
+            this.ProgressBarEncode.Location = new System.Drawing.Point(406, 253);
             this.ProgressBarEncode.Name = "ProgressBarEncode";
-            this.ProgressBarEncode.Size = new System.Drawing.Size(357, 23);
+            this.ProgressBarEncode.Size = new System.Drawing.Size(238, 23);
             this.ProgressBarEncode.TabIndex = 12;
             // 
             // CheckBoxBase64
             // 
-            this.CheckBoxBase64.AutoSize = true;
-            this.CheckBoxBase64.Location = new System.Drawing.Point(309, 84);
+            this.CheckBoxBase64.Checked = true;
+            this.CheckBoxBase64.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CheckBoxBase64.Location = new System.Drawing.Point(406, 84);
             this.CheckBoxBase64.Name = "CheckBoxBase64";
-            this.CheckBoxBase64.Size = new System.Drawing.Size(65, 17);
+            this.CheckBoxBase64.Size = new System.Drawing.Size(65, 24);
             this.CheckBoxBase64.TabIndex = 13;
             this.CheckBoxBase64.Text = "Base 64";
-            this.ToolTipAes.SetToolTip(this.CheckBoxBase64, "After encrypting the text, the result will be base64 encoded, before it\'s hidden " +
-        "in the image");
             this.CheckBoxBase64.UseVisualStyleBackColor = true;
-            this.CheckBoxBase64.CheckedChanged += new System.EventHandler(this.TextMessage_TextChanged);
+            this.CheckBoxBase64.CheckedChanged += new System.EventHandler(this.CheckBoxBase64_CheckedChanged);
             // 
             // CheckBoxAes
             // 
-            this.CheckBoxAes.AutoSize = true;
-            this.CheckBoxAes.Location = new System.Drawing.Point(309, 123);
+            this.CheckBoxAes.Location = new System.Drawing.Point(406, 114);
             this.CheckBoxAes.Name = "CheckBoxAes";
-            this.CheckBoxAes.Size = new System.Drawing.Size(47, 17);
+            this.CheckBoxAes.Size = new System.Drawing.Size(47, 24);
             this.CheckBoxAes.TabIndex = 14;
             this.CheckBoxAes.Text = "AES";
             this.ToolTipAes.SetToolTip(this.CheckBoxAes, "After encrypting the text, the result will be base64 encoded, before it\'s hidden " +
@@ -201,9 +202,9 @@
             // TextBoxAesKey
             // 
             this.TextBoxAesKey.Enabled = false;
-            this.TextBoxAesKey.Location = new System.Drawing.Point(309, 146);
+            this.TextBoxAesKey.Location = new System.Drawing.Point(406, 144);
             this.TextBoxAesKey.Name = "TextBoxAesKey";
-            this.TextBoxAesKey.Size = new System.Drawing.Size(335, 20);
+            this.TextBoxAesKey.Size = new System.Drawing.Size(238, 20);
             this.TextBoxAesKey.TabIndex = 15;
             // 
             // ToolTipAes
@@ -215,17 +216,36 @@
             // PictureSelectFile
             // 
             this.PictureSelectFile.BackColor = System.Drawing.SystemColors.Control;
-            this.PictureSelectFile.Location = new System.Drawing.Point(287, 26);
+            this.PictureSelectFile.Location = new System.Drawing.Point(372, 26);
             this.PictureSelectFile.Name = "PictureSelectFile";
             this.PictureSelectFile.Size = new System.Drawing.Size(24, 24);
             this.PictureSelectFile.TabIndex = 16;
             this.PictureSelectFile.TabStop = false;
             // 
+            // PictureBoxBase64
+            // 
+            this.PictureBoxBase64.BackColor = System.Drawing.SystemColors.Control;
+            this.PictureBoxBase64.Enabled = false;
+            this.PictureBoxBase64.Location = new System.Drawing.Point(477, 82);
+            this.PictureBoxBase64.Name = "PictureBoxBase64";
+            this.PictureBoxBase64.Size = new System.Drawing.Size(24, 24);
+            this.PictureBoxBase64.TabIndex = 17;
+            this.PictureBoxBase64.TabStop = false;
+            this.ToolTipBase64.SetToolTip(this.PictureBoxBase64, "Some special characters may not work without being base64 encoded!");
+            this.PictureBoxBase64.Visible = false;
+            // 
+            // ToolTipBase64
+            // 
+            this.ToolTipBase64.AutoPopDelay = 5000;
+            this.ToolTipBase64.InitialDelay = 250;
+            this.ToolTipBase64.ReshowDelay = 100;
+            // 
             // EncodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 398);
+            this.ClientSize = new System.Drawing.Size(656, 311);
+            this.Controls.Add(this.PictureBoxBase64);
             this.Controls.Add(this.PictureSelectFile);
             this.Controls.Add(this.TextBoxAesKey);
             this.Controls.Add(this.CheckBoxAes);
@@ -246,6 +266,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureSelectFile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxBase64)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,6 +293,8 @@
         private System.Windows.Forms.ToolTip ToolTipAes;
         private System.Windows.Forms.ToolStripMenuItem MenuStripSettingsForm;
         private System.Windows.Forms.PictureBox PictureSelectFile;
+        private System.Windows.Forms.PictureBox PictureBoxBase64;
+        private System.Windows.Forms.ToolTip ToolTipBase64;
     }
 }
 

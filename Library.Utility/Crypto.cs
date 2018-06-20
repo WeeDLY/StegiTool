@@ -37,9 +37,12 @@ namespace Library.Utility
             byte[] encrypted;
             using (T cipher = new T())
             {
-                PasswordDeriveBytes _passwordBytes =
-                    new PasswordDeriveBytes(password, saltBytes, Settings.Hash, Settings.Iterations);
-                byte[] keyBytes = _passwordBytes.GetBytes(Settings.KeySize / 8);
+                PasswordDeriveBytes _passwordBytes = new PasswordDeriveBytes(password, saltBytes, Settings.Hash, Settings.Iterations);
+                byte[] keyBytes = GetPasswordDeriveBytes(_passwordBytes);
+                if (keyBytes == null)
+                {
+                    return null;
+                }
 
                 cipher.Mode = CipherMode.CBC;
 
@@ -54,6 +57,24 @@ namespace Library.Utility
                 cipher.Clear();
             }
             return Convert.ToBase64String(encrypted);
+        }
+
+        /// <summary>
+        /// Gets the password derive bytes.
+        /// </summary>
+        /// <param name="_passwordBytes">The password bytes.</param>
+        /// <returns></returns>
+        private static byte[] GetPasswordDeriveBytes(PasswordDeriveBytes _passwordBytes)
+        {
+            try
+            {
+                return _passwordBytes.GetBytes(Settings.KeySize / 8);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
         }
 
         /// <summary>
@@ -97,7 +118,11 @@ namespace Library.Utility
             using (T cipher = new T())
             {
                 PasswordDeriveBytes _passwordBytes = new PasswordDeriveBytes(password, saltBytes, Settings.Hash, Settings.Iterations);
-                byte[] keyBytes = _passwordBytes.GetBytes(Settings.KeySize / 8);
+                byte[] keyBytes = GetPasswordDeriveBytes(_passwordBytes);
+                if (keyBytes == null)
+                {
+                    return null;
+                }
 
                 cipher.Mode = CipherMode.CBC;
 

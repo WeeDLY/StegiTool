@@ -36,7 +36,6 @@
             this.LblFile = new System.Windows.Forms.Label();
             this.BtnSelectFile = new System.Windows.Forms.Button();
             this.TextOutput = new System.Windows.Forms.RichTextBox();
-            this.BtnClear = new System.Windows.Forms.Button();
             this.BtnDecode = new System.Windows.Forms.Button();
             this.CheckBoxBase64 = new System.Windows.Forms.CheckBox();
             this.CheckBoxAes = new System.Windows.Forms.CheckBox();
@@ -84,7 +83,7 @@
             // 
             this.LblFile.Location = new System.Drawing.Point(93, 27);
             this.LblFile.Name = "LblFile";
-            this.LblFile.Size = new System.Drawing.Size(188, 23);
+            this.LblFile.Size = new System.Drawing.Size(273, 23);
             this.LblFile.TabIndex = 12;
             this.LblFile.Text = "<Selected File>";
             this.LblFile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -101,28 +100,19 @@
             // 
             // TextOutput
             // 
-            this.TextOutput.Location = new System.Drawing.Point(12, 56);
+            this.TextOutput.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.TextOutput.Location = new System.Drawing.Point(8, 56);
             this.TextOutput.Name = "TextOutput";
             this.TextOutput.ReadOnly = true;
-            this.TextOutput.Size = new System.Drawing.Size(269, 301);
+            this.TextOutput.Size = new System.Drawing.Size(388, 243);
             this.TextOutput.TabIndex = 15;
             this.TextOutput.Text = "";
             // 
-            // BtnClear
-            // 
-            this.BtnClear.Location = new System.Drawing.Point(12, 363);
-            this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(75, 23);
-            this.BtnClear.TabIndex = 16;
-            this.BtnClear.Text = "Clear";
-            this.BtnClear.UseVisualStyleBackColor = true;
-            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
-            // 
             // BtnDecode
             // 
-            this.BtnDecode.Location = new System.Drawing.Point(390, 265);
+            this.BtnDecode.Location = new System.Drawing.Point(402, 247);
             this.BtnDecode.Name = "BtnDecode";
-            this.BtnDecode.Size = new System.Drawing.Size(75, 20);
+            this.BtnDecode.Size = new System.Drawing.Size(242, 23);
             this.BtnDecode.TabIndex = 17;
             this.BtnDecode.Text = "Decode";
             this.BtnDecode.UseVisualStyleBackColor = true;
@@ -131,7 +121,9 @@
             // CheckBoxBase64
             // 
             this.CheckBoxBase64.AutoSize = true;
-            this.CheckBoxBase64.Location = new System.Drawing.Point(287, 131);
+            this.CheckBoxBase64.Checked = true;
+            this.CheckBoxBase64.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CheckBoxBase64.Location = new System.Drawing.Point(402, 58);
             this.CheckBoxBase64.Name = "CheckBoxBase64";
             this.CheckBoxBase64.Size = new System.Drawing.Size(65, 17);
             this.CheckBoxBase64.TabIndex = 18;
@@ -141,7 +133,7 @@
             // CheckBoxAes
             // 
             this.CheckBoxAes.AutoSize = true;
-            this.CheckBoxAes.Location = new System.Drawing.Point(287, 163);
+            this.CheckBoxAes.Location = new System.Drawing.Point(402, 81);
             this.CheckBoxAes.Name = "CheckBoxAes";
             this.CheckBoxAes.Size = new System.Drawing.Size(47, 17);
             this.CheckBoxAes.TabIndex = 19;
@@ -152,16 +144,16 @@
             // TextBoxAesPassword
             // 
             this.TextBoxAesPassword.Enabled = false;
-            this.TextBoxAesPassword.Location = new System.Drawing.Point(285, 186);
+            this.TextBoxAesPassword.Location = new System.Drawing.Point(400, 104);
             this.TextBoxAesPassword.Name = "TextBoxAesPassword";
-            this.TextBoxAesPassword.Size = new System.Drawing.Size(357, 20);
+            this.TextBoxAesPassword.Size = new System.Drawing.Size(244, 20);
             this.TextBoxAesPassword.TabIndex = 20;
             // 
             // ProgressBarDecode
             // 
-            this.ProgressBarDecode.Location = new System.Drawing.Point(285, 334);
+            this.ProgressBarDecode.Location = new System.Drawing.Point(402, 276);
             this.ProgressBarDecode.Name = "ProgressBarDecode";
-            this.ProgressBarDecode.Size = new System.Drawing.Size(357, 23);
+            this.ProgressBarDecode.Size = new System.Drawing.Size(242, 23);
             this.ProgressBarDecode.TabIndex = 22;
             // 
             // TimerProgress
@@ -171,7 +163,7 @@
             // 
             // PictureSelectFile
             // 
-            this.PictureSelectFile.Location = new System.Drawing.Point(287, 26);
+            this.PictureSelectFile.Location = new System.Drawing.Point(372, 26);
             this.PictureSelectFile.Name = "PictureSelectFile";
             this.PictureSelectFile.Size = new System.Drawing.Size(24, 24);
             this.PictureSelectFile.TabIndex = 23;
@@ -181,14 +173,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 398);
+            this.ClientSize = new System.Drawing.Size(656, 311);
             this.Controls.Add(this.PictureSelectFile);
             this.Controls.Add(this.ProgressBarDecode);
             this.Controls.Add(this.TextBoxAesPassword);
             this.Controls.Add(this.CheckBoxAes);
             this.Controls.Add(this.CheckBoxBase64);
             this.Controls.Add(this.BtnDecode);
-            this.Controls.Add(this.BtnClear);
             this.Controls.Add(this.TextOutput);
             this.Controls.Add(this.LblFile);
             this.Controls.Add(this.BtnSelectFile);
@@ -212,7 +203,6 @@
         private System.Windows.Forms.Label LblFile;
         private System.Windows.Forms.Button BtnSelectFile;
         private System.Windows.Forms.RichTextBox TextOutput;
-        private System.Windows.Forms.Button BtnClear;
         private System.Windows.Forms.Button BtnDecode;
         private System.Windows.Forms.CheckBox CheckBoxBase64;
         private System.Windows.Forms.CheckBox CheckBoxAes;
