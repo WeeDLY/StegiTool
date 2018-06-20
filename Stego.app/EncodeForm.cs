@@ -47,7 +47,7 @@ namespace Stego.app
             this.Location = spawnLoc;
 
             PictureSelectFile.Image = Properties.Resources.Error;
-            PictureBoxBase64.Image = Properties.Resources.Error;
+            PictureBoxBase64.Image = Properties.Resources.Warning;
 
             if (stegEncode == null)
                 return;
